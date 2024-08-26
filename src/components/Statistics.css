@@ -1,76 +1,101 @@
-/* Statistics Page Container */
 .statistics-container {
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  height: 100vh; /* Full viewport height */
-  gap: 40px;
-  padding: 20px;
-  box-sizing: border-box; /* Include padding in total width/height */
-}
-
-/* Chart Container */
-.chart-container {
-  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  gap: 40px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Categories Container */
+.chart-container {
+  width: 680px;
+  height: 680px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.chart-container canvas {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+}
+
 .categories-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   width: 35%;
 }
 
 .category-card {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align items to the start */
+  justify-content: flex-start;
   background-color: #ffffff;
-  padding: 10px; /* Adjust padding to suit tighter layout */
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  gap: 10px; /* Add gap to control space between icon and text */
+  gap: 8px;
 }
 
-/* Category Icon Style */
+.category-block {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 90px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
 .category-icon {
   font-size: 24px;
-  margin-right: 5px;
-}
-
-/* Category Information Style */
-.category-info {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 .category-percentage {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin: 0;
 }
 
 .category-label {
   font-size: 16px;
   color: #757575;
+  margin: 0;
 }
 
-/* Category Amount Style */
 .category-amount {
-  margin-left: auto; /* Push amount to the far right */
+  margin-left: auto;
   text-align: right;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .category-change {
-  padding: 10px;
   font-size: 14px;
   color: #757575;
   margin-bottom: 5px;
+}
+
+@media (max-width: 800px) {
+  .statistics-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .chart-container,
+  .categories-container {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .chart-container {
+    height: auto;
+  }
 }

@@ -42,10 +42,12 @@ const Statistics = () => {
       <div className="categories-container">
         {categories.map((category, index) => (
           <div className="category-card" key={index}>
-            <span className="category-icon" style={{ color: category.color }}>
-              {category.icon}
-            </span>
-            <span className="category-percentage">{category.percentage}</span>
+            <div className="category-block" style={{ backgroundColor: category.color }}>
+              <span className="category-icon" style={{ color: category.color }}>
+                {category.icon}
+              </span>
+              <span className="category-percentage">{category.percentage}</span>
+            </div>
             <span className="category-label">{category.label}</span>
             <div className="category-amount">
               <span className="category-change">{category.change}</span>
