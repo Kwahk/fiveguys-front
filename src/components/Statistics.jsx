@@ -37,24 +37,35 @@ const Statistics = () => {
   return (
     <div className="statistics-container">
       <div className="chart-container">
-        <Pie data={data} />
+        <Pie
+          data={data}
+          options={{
+            maintainAspectRatio: false,
+            responsive: true,
+          }}
+        />
       </div>
       <div className="categories-container">
-        {categories.map((category, index) => (
-          <div className="category-card" key={index}>
-            <div className="category-block" style={{ backgroundColor: category.color }}>
-              <span className="category-icon" style={{ color: category.color }}>
-                {category.icon}
-              </span>
-              <span className="category-percentage">{category.percentage}</span>
-            </div>
-            <span className="category-label">{category.label}</span>
-            <div className="category-amount">
+        {categories.map((category, index) => {
+          // category.color에서 'rgba'를 'rgb'로 변환하여 사용
+          const fontColor = category.color.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/, "rgb($1,$2,$3)");
+
+          return (
+            <div className="category-card" key={index}>
+              <div className="category-block" style={{ backgroundColor: category.color }}>
+                <span className="category-icon" style={{ color: fontColor }}>
+                  {category.icon}
+                </span>
+                <span className="category-percentage" style={{ color: fontColor }}>
+                  {category.percentage}
+                </span>
+              </div>
+              <span className="category-label">{category.label}</span>
               <span className="category-change">{category.change}</span>
-              {category.amount}
+              <span className="category-amount">{category.amount}</span>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
