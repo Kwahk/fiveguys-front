@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  filter: drop-shadow(gray 0.1rem 0.1rem 4px);
+  z-index: 10;
 }
 
 .logo {
