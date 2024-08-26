@@ -29,7 +29,7 @@ const Join = () => {
             <input type="password" id="confirm-password" placeholder="********" />
             <div className="password-icon">{/* Add eye icon here */}</div>
           </div>
-          <button type="submit" className="signup-button">
+          <button type="submit" className="submit-button">
             PROCEED
           </button>
         </form>

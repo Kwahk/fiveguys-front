@@ -14,7 +14,7 @@
   height: 24px;
 }
 
-.dropdown-icon {
+.dropdown {
   width: 25px;
   height: 25px;
 }
@@ -48,52 +48,4 @@
   display: flex; /* li 요소와 일치하도록 플렉스 설정 */
   align-items: center; /* 수직 정렬 */
   height: 55px; /* li 요소와 같은 높이 */
-}
-
-/* Dropdown menu styles */
-.dropdown-menu {
-  position: absolute;
-  top: 30px; /* Adjust this value based on your layout */
-  right: 0; /* Align to the right */
-  background-color: #ffffff;
-  border-radius: 10px; /* Rounded corners */
-  list-style: none;
-  padding: 10px 0;
-  margin: 0;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-  z-index: 1000; /* Ensure dropdown appears on top */
-  min-width: 120px; /* Ensure enough width for the text */
-  text-align: center; /* Center align text */
-  border: 1px solid #f2c894; /* Light border matching the image style */
-}
-
-/* Dropdown menu item styles */
-.dropdown-menu li {
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #f27f3e; /* Text color matching the image */
-  font-weight: 600; /* Bold text */
-  font-family: "Zen Kaku Gothic Antique", sans-serif;
-}
-
-.dropdown-menu li:hover {
-  background-color: #f8f3ec; /* Light hover effect */
-  color: #000; /* Change text color on hover */
-}
-
-/* Dropdown separator line style */
-.dropdown-menu li:not(:last-child) {
-  border-bottom: 1px solid #e0e0e0; /* Separator line between items */
-}
-
-/* Link styles for dropdown items */
-.dropdown-menu li a {
-  text-decoration: none;
-  color: inherit; /* Inherit color from parent li */
-  display: block;
-}
-
-.dropdown-menu li a:hover {
-  color: #000; /* Change color on hover */
 }

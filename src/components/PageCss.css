@@ -163,7 +163,7 @@ input::placeholder {
 }
 
 /* 버튼 스타일 */
-.signup-button {
+.submit-button {
   width: 100%;
   padding: 12px;
   background-color: #f27f3e;
@@ -177,7 +177,7 @@ input::placeholder {
   margin-top: 10px;
 }
 
-.signup-button:hover {
+.submit-button:hover {
   background-color: #e57300;
 }
 
@@ -196,4 +196,45 @@ input::placeholder {
   line-height: 28px;
   display: flex;
   align-items: center;
+}
+
+/* 옵션 스타일 */
+.options-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #616161;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+}
+
+/* 체크박스와 라벨 스타일 */
+.login-sub {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  margin-left: 5px;
+  font-size: 14px;
+  color: #616161;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+}
+
+/* 아이디/비밀번호 찾기 링크 스타일 */
+.find-options {
+  display: flex;
+  gap: 15px; /* 간격 조절 */
+}
+
+.find-link {
+  font-size: 14px;
+  color: #616161;
+  text-decoration: none;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+}
+
+.find-link:hover {
+  text-decoration: underline; /* 마우스 오버 효과 */
 }
