@@ -5,6 +5,7 @@ import Join from "./components/Join";
 import Calendar from "./components/Calendar";
 import Statistics from "./components/Statistics";
 import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
 
           {/* // http://localhost:3000/join */}
           <Route path="/join" element={<Join />}></Route>
+
+          {/* // http://localhost:3000/login */}
+          <Route path="/login" element={<Login />}></Route>
 
           {/* // http://localhost:3000/calendar */}
           <Route path="/calendar" element={<Calendar />}></Route>
