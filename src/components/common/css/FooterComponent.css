@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed; /* 수정된 부분 */
+  width: 100%; /* 필요에 따라 추가 가능 */
+}
