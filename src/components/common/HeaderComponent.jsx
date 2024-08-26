@@ -1,14 +1,30 @@
-import "./HeaderComponent.css"; // 별도의 CSS 파일로 스타일을 분리할 경우 사용
+import "./css/HeaderComponent.css";
+import MainLogo from "../../assets/Mainlogo.png";
+import Dropdown from "../../assets/Dropdown.png";
+import { Link } from "react-router-dom";
 
 const HeaderComponent = () => {
   return (
     <header className="header">
-      <div className="title">인-앤-아웃 OOOO</div>
+      <div className="logo-container">
+        <Link to="/">
+          <img src={MainLogo} alt="Logo" className="logo" />
+        </Link>
+      </div>
       <nav className="header-bar">
         <ul className="header-list">
-          <li className="header-item">Calender</li>
-          <li className="header-item">Leaderboard</li>
-          <li className="header-item">Statistics</li>
+          <Link to="/calendar">
+            <li className="header-item">Calendar</li>
+          </Link>
+          <Link to="/dashboard">
+            <li className="header-item">Leaderboard</li>
+          </Link>
+          <Link to="/statistics">
+            <li className="header-item">Statistics</li>
+          </Link>
+          <li className="header-item">
+            <img src={Dropdown} alt="Dropdown" className="dropdown" />
+          </li>
         </ul>
       </nav>
     </header>

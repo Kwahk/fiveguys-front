@@ -1,4 +1,72 @@
-.text-center {
-  margin-top: 40px;
-  text-align: center; /* 가운데 정렬도 적용 */
+.intro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
 }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intellij {
+  width: 300px;
+  height: 300px;
+}
+
+.vscode {
+  width: 320px;
+  height: 320px;
+}
+
+.docker {
+  width: 320px;
+  height: 320px;
+}
+
+.aws {
+  width: 240px;
+  height: 146.64px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-image {
+  object-fit: cover;
+}
+
+.card-hover-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 40px;
+}
+
+.card:hover .card-hover-content {
+  opacity: 1;
+}
+
+/* 여기부터 Join Page의 CSS 파일 */

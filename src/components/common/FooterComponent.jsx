@@ -1,10 +1,10 @@
+import "./css/FooterComponent.css"; // 별도의 CSS 파일로 스타일을 분리할 경우 사용
+
 const FooterComponent = () => {
   return (
-    <div>
-      <footer className="footer">
-        <span>Integrating Reactjs and SpringBoot REST API</span>
-      </footer>
-    </div>
+    <footer className="footer">
+      <p>© 2023 Team FiveGuys. All rights reserved.</p>
+    </footer>
   );
 };
 
