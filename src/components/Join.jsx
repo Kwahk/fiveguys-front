@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Join = () => {
+  const [gender, setGender] = useState("");
+
   return (
     <div className="page-container">
       <div className="background-gradient"></div>
@@ -11,9 +14,20 @@ const Join = () => {
             <label htmlFor="username">USERNAME</label>
             <input type="text" id="username" placeholder="Enter Your Name" />
           </div>
-          <div className="certify-item">
-            <label htmlFor="birth">BIRTH</label>
-            <input type="date" id="birth" />
+          <div className="certify-item-double" style={{ display: "flex" }}>
+            <span>
+              <label htmlFor="birth">BIRTH</label>
+              <input type="date" id="birth" />
+            </span>
+            <span>
+              <label>GENDER</label>
+              <div>
+                <input type="radio" id="male" name="gender" value="Male" onChange={(e) => setGender(e.target.value)} />
+                <label htmlFor="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female" onChange={(e) => setGender(e.target.value)} />
+                <label htmlFor="female">Female</label>
+              </div>
+            </span>
           </div>
           <div className="certify-item">
             <label htmlFor="email">EMAIL ADDRESS</label>
@@ -22,12 +36,10 @@ const Join = () => {
           <div className="certify-item">
             <label htmlFor="password">PASSWORD</label>
             <input type="password" id="password" placeholder="********" />
-            <div className="password-icon">{/* Add eye icon here */}</div>
           </div>
           <div className="certify-item">
             <label htmlFor="confirm-password">PASSWORD CONFIRM</label>
             <input type="password" id="confirm-password" placeholder="********" />
-            <div className="password-icon">{/* Add eye icon here */}</div>
           </div>
           <button type="submit" className="submit-button">
             PROCEED
