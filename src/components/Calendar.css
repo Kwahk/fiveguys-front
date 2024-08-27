@@ -107,6 +107,7 @@
     align-items: center;
     justify-content: center;
     margin: auto;
+    
   }
   /* 전체 스타일 */
   .react-calendar {
@@ -115,6 +116,7 @@
     border-radius: 20px;
     border: solid 4px #F8F3EC;
     margin-top: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
 /* 날짜 타일 스타일 */

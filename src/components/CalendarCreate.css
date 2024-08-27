@@ -1,0 +1,102 @@
+.calendar-create-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+}
+
+.calendar-create {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #F8F3EC;
+    width: 60vw;
+    height: auto;
+    margin-top: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* header */
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Button container with space between buttons */
+.entry-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    border: 1px solid #F27F3E;
+    border-radius: 5px;
+    background-color: #F8F3EC;
+    cursor: pointer;
+    font-size: 14px;
+    color: #F27F3E;
+}
+
+.button.primary {
+    background-color: #F27F3E;
+    color: #fff;
+}
+
+.button.primary:hover {
+    background-color: #F27F3E;
+}
+
+/* Form details section */
+.entry-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.col {
+    flex: 1;
+}
+
+.input-select,
+.input-text {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-select {
+    background-color: #fff;
+}
+
+.input-text::placeholder {
+    color: #888;
+}
+
+.input-date {
+    background-color: #F8F3EC;
+    border: solid 1px #ccc;
+    font-size: 20px ;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+/* Image preview section */
+.image-preview {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    object-fit: contain;
+}
