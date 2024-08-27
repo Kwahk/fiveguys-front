@@ -9,17 +9,17 @@ const PWSearch = () => {
   };
 
   return (
-    <div className="page-container-search">
+    <div className="page-container">
       <div className="certify-container">
         <form className="certify-form" onSubmit={handleSearchPassword}>
           <h2 className="form-title">Find Your Password</h2>
           <div className="certify-item">
             <label htmlFor="email">Email Address</label>
-            <input type="email" id="email" placeholder="Enter your email" />
+            <input type="email" id="email" placeholder="Enter Your Email" />
           </div>
           <div className="certify-item">
             <label htmlFor="username">USERNAME</label>
-            <input type="text" id="username" placeholder="Enter Your Username" />
+            <input type="text" id="username" placeholder="Enter Your Name" />
           </div>
           <button type="submit" className="submit-button">
             TEPORARY PASSWARD

@@ -9,7 +9,7 @@ const Join = () => {
           <h2 className="form-title">Sign Up</h2>
           <div className="certify-item">
             <label htmlFor="username">USERNAME</label>
-            <input type="text" id="username" placeholder="Enter Your Username" />
+            <input type="text" id="username" placeholder="Enter Your Name" />
           </div>
           <div className="certify-item">
             <label htmlFor="birth">BIRTH</label>

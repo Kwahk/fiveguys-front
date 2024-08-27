@@ -10,33 +10,35 @@ import CateEtc from "../assets/Cate_Etc.png";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const colorThemes = {
+  food: { background: "#FFC6C1", border: "#E02F24" },
+  traffic: { background: "#C8FFDF", border: "#10E36C" },
+  fashion: { background: "#BFDFFF", border: "#2E9BFE" },
+  culture: { background: "#CAC9FF", border: "#8251FE" },
+  education: { background: "#FFD3B2", border: "#FE7C12" },
+  etc: { background: "#FFF6C8", border: "#FAC400" },
+};
+
 export const data = {
   labels: ["식비", "교통/차량", "패션/미용", "문화생활", "교육", "기타"],
   datasets: [
     {
       label: "Percentage of Expenses",
       data: [30, 26, 18, 16, 7, 2],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.5)", // Red
-        "rgba(75, 192, 192, 0.5)", // Green
-        "rgba(54, 162, 235, 0.5)", // Blue
-        "rgba(153, 102, 255, 0.5)", // Purple
-        "rgba(255, 159, 64, 0.5)", // Orange
-        "rgba(255, 206, 86, 0.5)", // Yellow
-      ],
-      borderColor: ["rgba(255, 99, 132, 1)", "rgba(75, 192, 192, 1)", "rgba(54, 162, 235, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)", "rgba(255, 206, 86, 1)"],
+      backgroundColor: Object.values(colorThemes).map((color) => color.background),
+      borderColor: Object.values(colorThemes).map((color) => color.border),
       borderWidth: 1,
     },
   ],
 };
 
 const categories = [
-  { label: "식비", percentage: "30%", amount: "184,300원", icon: CateFood, change: "+11,290원", color: "rgba(255, 99, 132, 0.5)" },
-  { label: "교통/차량", percentage: "26%", amount: "158,000원", icon: CateTraffic, change: "+9,300원", color: "rgba(75, 192, 192, 0.5)" },
-  { label: "패션/미용", percentage: "18%", amount: "112,400원", icon: CateFashion, change: "-36,000원", color: "rgba(54, 162, 235, 0.5)" },
-  { label: "문화생활", percentage: "16%", amount: "107,500원", icon: CateCulture, change: "+10,600원", color: "rgba(153, 102, 255, 0.5)" },
-  { label: "교육", percentage: "7%", amount: "45,000원", icon: CateEducation, change: "-11,200원", color: "rgba(255, 159, 64, 0.5)" },
-  { label: "기타", percentage: "2%", amount: "11,400원", icon: CateEtc, change: "-51,500원", color: "rgba(255, 206, 86, 0.5)" },
+  { label: "식비", percentage: "30%", amount: "184,300원", icon: CateFood, change: "+11,290원", color: colorThemes.food.background, borderColor: colorThemes.food.border },
+  { label: "교통/차량", percentage: "26%", amount: "158,000원", icon: CateTraffic, change: "+9,300원", color: colorThemes.traffic.background, borderColor: colorThemes.traffic.border },
+  { label: "패션/미용", percentage: "18%", amount: "112,400원", icon: CateFashion, change: "-36,000원", color: colorThemes.fashion.background, borderColor: colorThemes.fashion.border },
+  { label: "문화생활", percentage: "16%", amount: "107,500원", icon: CateCulture, change: "+10,600원", color: colorThemes.culture.background, borderColor: colorThemes.culture.border },
+  { label: "교육", percentage: "7%", amount: "45,000원", icon: CateEducation, change: "-11,200원", color: colorThemes.education.background, borderColor: colorThemes.education.border },
+  { label: "기타", percentage: "2%", amount: "11,400원", icon: CateEtc, change: "-51,500원", color: colorThemes.etc.background, borderColor: colorThemes.etc.border },
 ];
 
 const Statistics = () => {
@@ -52,24 +54,19 @@ const Statistics = () => {
         />
       </div>
       <div className="categories-container">
-        {categories.map((category, index) => {
-          // category.color에서 'rgba'를 'rgb'로 변환하여 사용
-          const fontColor = category.color.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/, "rgb($1,$2,$3)");
-
-          return (
-            <div className="category-card" key={index}>
-              <div className="category-block" style={{ backgroundColor: category.color }}>
-                <img src={category.icon} alt={category.label} className="category-icon" />
-                <span className="category-percentage" style={{ color: fontColor }}>
-                  {category.percentage}
-                </span>
-              </div>
-              <span className="category-label">{category.label}</span>
-              <span className="category-change">{category.change}</span>
-              <span className="category-amount">{category.amount}</span>
+        {categories.map((category, index) => (
+          <div className="category-card" key={index}>
+            <div className="category-block" style={{ backgroundColor: category.color }}>
+              <img src={category.icon} alt={category.label} className="category-icon" />
+              <span className="category-percentage" style={{ color: category.borderColor }}>
+                {category.percentage}
+              </span>
             </div>
-          );
-        })}
+            <span className="category-label">{category.label}</span>
+            <span className="category-change">{category.change}</span>
+            <span className="category-amount">{category.amount}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

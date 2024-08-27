@@ -105,6 +105,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.menu-item a {
+  margin: auto;
+  width: 158px; /* 메뉴 아이템을 부모에 맞게 */
+  height: 50px;
+}
 
 .menu-item:hover {
   background-color: #f9ecda;
@@ -116,13 +121,4 @@
   height: 1px; /* 구분선 높이 */
   background-color: #f2803e8f; /* 구분선 색상 */
   margin: 2px 0; /* 위아래 여백 */
-}
-
-.dropdown-menu a {
-  text-decoration: none;
-  color: #f27f3e;
-  width: 100%;
-  display: block; /* 링크를 블록으로 */
-  text-align: center;
-  transition: background-color 0.3s ease;
 }
