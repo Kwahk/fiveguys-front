@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderComponent from "./components/common/HeaderComponent";
 import Intro from "./components/Intro";
 import Join from "./components/Join";
-import Calendar from "./components/Calendar";
+import CalendarPage from "./components/CalendarPage";
 import Statistics from "./components/Statistics";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
@@ -23,7 +23,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
 
           {/* // http://localhost:3000/calendar */}
-          <Route path="/calendar" element={<Calendar />}></Route>
+          <Route path="/calendar" element={<CalendarPage />}></Route>
 
           {/* // http://localhost:3000/dashboard */}
           <Route path="/dashboard" element={<Dashboard />}></Route>
