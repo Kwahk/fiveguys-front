@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState(""); 
   const [rememberEmail, setRememberEmail] = useState(false); 
-  const [errorMessage, setErrorMessage] = useState(""); // 오류 메시지 상태 추가
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate(); 
 
@@ -35,7 +35,7 @@ const Login = () => {
         navigate("/calendar"); 
       }
     } catch (error) {
-      setErrorMessage("로그인 실패: 이메일 또는 비밀번호가 잘못되었습니다."); // 오류 메시지 설정
+      setErrorMessage("Login failed: Incorrect email or password.");
     }
   };
 
@@ -46,8 +46,7 @@ const Login = () => {
         <form className="certify-form" onSubmit={handleSubmit}>
           <h2 className="form-title">Log in&out</h2>
           
-          {errorMessage && <div className="error-message">{errorMessage}</div>} {/* 오류 메시지 표시 */}
-
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
           <div className="certify-item">
             <label htmlFor="username">ID (email)</label>
             <input
