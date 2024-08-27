@@ -1,39 +1,43 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
 import axios from "axios";
 
 const Join = () => {
-  const [username, setUsername] = useState("");
-  const [birth, setBirth] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    birthDate: "",
+    gender: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
+
+  const navigate = useNavigate(); // useNavigate 훅 사용
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleGenderChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      gender: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-
     try {
-      const response = await axios.post("http://localhost:8080/api/innout/join", {
-        username,
-        birthDate: birth, 
-        email,
-        password,
-        passwordConfirm: confirmPassword,
-      });
-
-      if (response.status === 200) {
-        alert("Signup successful!");
-        navigate("/login"); 
-      }
+      const response = await axios.post("http://localhost:8080/api/innout/join", formData);
+      console.log("Success:", response.data);
+      alert("Thanks to join us!!");
+      navigate("/login"); // 성공 시 로그인 페이지로 리디렉션
     } catch (error) {
-      console.error("Signup failed:", error);
-      alert("Signup failed! Please try again.");
+      console.error("Error:", error);
     }
   };
 
@@ -45,59 +49,34 @@ const Join = () => {
           <h2 className="form-title">Sign Up</h2>
           <div className="certify-item">
             <label htmlFor="username">USERNAME</label>
-            <input
-              type="text"
-              id="username"
-              placeholder="johndoe@example.com"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+            <input type="text" id="username" placeholder="Enter Your Name" onChange={handleInputChange} />
           </div>
-          <div className="certify-item">
-            <label htmlFor="birth">BIRTH</label>
-            <input
-              type="date"
-              id="birth"
-              value={birth}
-              onChange={(e) => setBirth(e.target.value)}
-              required
-            />
+          <div className="certify-item-double" style={{ display: "flex" }}>
+            <span>
+              <label htmlFor="birth">BIRTH</label>
+              <input type="date" id="birthDate" onChange={handleInputChange} />
+            </span>
+            <span>
+              <label>GENDER</label>
+              <div>
+                <input type="radio" id="male" name="gender" value="male" checked={formData.gender === "male"} onChange={handleGenderChange} />
+                <label htmlFor="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" checked={formData.gender === "female"} onChange={handleGenderChange} />
+                <label htmlFor="female">Female</label>
+              </div>
+            </span>
           </div>
           <div className="certify-item">
             <label htmlFor="email">EMAIL ADDRESS</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="rndnjf@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <input type="email" id="email" placeholder="Enter Your Email" onChange={handleInputChange} />
           </div>
           <div className="certify-item">
             <label htmlFor="password">PASSWORD</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="********"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <div className="password-icon">{/* Add eye icon here */}</div>
+            <input type="password" id="password" placeholder="********" onChange={handleInputChange} />
           </div>
           <div className="certify-item">
             <label htmlFor="confirm-password">PASSWORD CONFIRM</label>
-            <input
-              type="password"
-              id="confirm-password"
-              placeholder="********"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-            <div className="password-icon">{/* Add eye icon here */}</div>
+            <input type="password" id="passwordConfirm" placeholder="********" onChange={handleInputChange} />
           </div>
           <button type="submit" className="submit-button">
             PROCEED

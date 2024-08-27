@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie"; 
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
+import axios from "axios"; // axios 추가
+import Cookies from "js-cookie"; // js-cookie 라이브러리 추가
 
 const Login = () => {
-  const [email, setEmail] = useState(""); 
-  const [password, setPassword] = useState(""); 
-  const [rememberEmail, setRememberEmail] = useState(false); 
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const navigate = useNavigate(); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberEmail, setRememberEmail] = useState(false);
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   useEffect(() => {
     const savedEmail = Cookies.get("savedEmail");
@@ -28,14 +26,20 @@ const Login = () => {
       Cookies.remove("savedEmail");
     }
 
+    // 로그인 요청 전송
     try {
       const response = await axios.post("http://localhost:8080/api/innout/login", { email, password });
+      console.log("Login successful:", response.data);
 
-      if (response.status === 200) {
-        navigate("/calendar"); 
-      }
+      // JWT 토큰을 로컬 스토리지에 저장
+      const token = response.data; // 서버에서 토큰을 직접 응답받는다고 가정
+      localStorage.setItem("jwtToken", token);
+
+      alert("Enjoy our page!!");
+      navigate("/calendar"); // 로그인 성공 시 캘린더 페이지로 리디렉션
     } catch (error) {
-      setErrorMessage("Login failed: Incorrect email or password.");
+      console.error("Login failed:", error);
+      alert("Login failed. Please check your credentials.");
     }
   };
 
@@ -49,23 +53,11 @@ const Login = () => {
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           <div className="certify-item">
             <label htmlFor="email">ID (email)</label>
-            <input
-              type="text"
-              id="username"
-              placeholder="Enter Your Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)} 
-            />
+            <input type="text" id="email" placeholder="Enter Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="certify-item">
             <label htmlFor="password">PASSWORD</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="********"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)} 
-            />
+            <input type="password" id="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)} />
             <div className="password-icon">{/* Add eye icon here */}</div>
           </div>
 
@@ -74,13 +66,7 @@ const Login = () => {
           </button>
           <div className="options-container">
             <span className="login-sub">
-              <input
-                type="checkbox"
-                id="checkId"
-                name="checkId"
-                checked={rememberEmail}
-                onChange={(e) => setRememberEmail(e.target.checked)} 
-              />
+              <input type="checkbox" id="checkId" name="checkId" checked={rememberEmail} onChange={(e) => setRememberEmail(e.target.checked)} />
               <label htmlFor="checkId" className="checkbox-label">
                 아이디 저장
               </label>
