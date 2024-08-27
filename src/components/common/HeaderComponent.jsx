@@ -2,8 +2,24 @@ import "./css/HeaderComponent.css";
 import MainLogo from "../../assets/Mainlogo.png";
 import Dropdown from "../../assets/Dropdown.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const HeaderComponent = () => {
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const [activeSubMenu, setActiveSubMenu] = useState(null);
+
+  const DropdownHandler = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleSubMenu = (menuName) => {
+    if (activeSubMenu === menuName) {
+      setActiveSubMenu(null);
+    } else {
+      setActiveSubMenu(menuName);
+    }
+  };
+
   return (
     <header className="header">
       <div className="logo-container">
@@ -22,8 +38,15 @@ const HeaderComponent = () => {
           <Link to="/statistics">
             <li className="header-item">Statistics</li>
           </Link>
-          <li className="header-item">
-            <img src={Dropdown} alt="Dropdown" className="dropdown" />
+          <li className="dropdown-container">
+            <img src={Dropdown} alt="Dropdown" className="dropdown-icon" onClick={DropdownHandler} />
+            <div className={`dropdown-menu ${isDropdownVisible ? "show" : ""}`}>
+              <ul className="menu">
+                <li className="menu-item">Logout</li>
+                <li className="menu-line"></li>
+                <li className="menu-item">Mypage</li>
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>
