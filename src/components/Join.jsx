@@ -1,45 +1,82 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
+import axios from "axios";
 
 const Join = () => {
-  const [gender, setGender] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    birthDate: "",
+    gender: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
+
+  const navigate = useNavigate(); // useNavigate 훅 사용
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleGenderChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      gender: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:8080/api/innout/join", formData);
+      console.log("Success:", response.data);
+      alert("Thanks to join us!!");
+      navigate("/login"); // 성공 시 로그인 페이지로 리디렉션
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <div className="page-container">
       <div className="background-gradient"></div>
       <div className="certify-container">
-        <form className="certify-form">
+        <form className="certify-form" onSubmit={handleSubmit}>
           <h2 className="form-title">Sign Up</h2>
           <div className="certify-item">
             <label htmlFor="username">USERNAME</label>
-            <input type="text" id="username" placeholder="Enter Your Name" />
+            <input type="text" id="username" placeholder="Enter Your Name" onChange={handleInputChange} />
           </div>
           <div className="certify-item-double" style={{ display: "flex" }}>
             <span>
               <label htmlFor="birth">BIRTH</label>
-              <input type="date" id="birth" />
+              <input type="date" id="birthDate" onChange={handleInputChange} />
             </span>
             <span>
               <label>GENDER</label>
               <div>
-                <input type="radio" id="male" name="gender" value="Male" onChange={(e) => setGender(e.target.value)} />
+                <input type="radio" id="male" name="gender" value="male" checked={formData.gender === "male"} onChange={handleGenderChange} />
                 <label htmlFor="male">Male</label>
-                <input type="radio" id="female" name="gender" value="Female" onChange={(e) => setGender(e.target.value)} />
+                <input type="radio" id="female" name="gender" value="female" checked={formData.gender === "female"} onChange={handleGenderChange} />
                 <label htmlFor="female">Female</label>
               </div>
             </span>
           </div>
           <div className="certify-item">
             <label htmlFor="email">EMAIL ADDRESS</label>
-            <input type="email" id="email" placeholder="Enter Your Email" />
+            <input type="email" id="email" placeholder="Enter Your Email" onChange={handleInputChange} />
           </div>
           <div className="certify-item">
             <label htmlFor="password">PASSWORD</label>
-            <input type="password" id="password" placeholder="********" />
+            <input type="password" id="password" placeholder="********" onChange={handleInputChange} />
           </div>
           <div className="certify-item">
             <label htmlFor="confirm-password">PASSWORD CONFIRM</label>
-            <input type="password" id="confirm-password" placeholder="********" />
+            <input type="password" id="passwordConfirm" placeholder="********" onChange={handleInputChange} />
           </div>
           <button type="submit" className="submit-button">
             PROCEED
