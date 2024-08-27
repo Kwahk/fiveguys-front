@@ -1,6 +1,12 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import "./Statistics.css";
+import CateFood from "../assets/Cate_Food.png";
+import CateTraffic from "../assets/Cate_Traffic.png";
+import CateFashion from "../assets/Cate_Fashion.png";
+import CateCulture from "../assets/Cate_Culture.png";
+import CateEducation from "../assets/Cate_Education.png";
+import CateEtc from "../assets/Cate_Etc.png";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -25,12 +31,12 @@ export const data = {
 };
 
 const categories = [
-  { label: "식비", percentage: "30%", amount: "184,300원", icon: "🍱", change: "+11,290원", color: "rgba(255, 99, 132, 0.5)" },
-  { label: "교통/차량", percentage: "26%", amount: "158,000원", icon: "🚗", change: "+9,300원", color: "rgba(75, 192, 192, 0.5)" },
-  { label: "패션/미용", percentage: "18%", amount: "112,400원", icon: "👗", change: "-36,000원", color: "rgba(54, 162, 235, 0.5)" },
-  { label: "문화생활", percentage: "16%", amount: "107,500원", icon: "🎬", change: "+10,600원", color: "rgba(153, 102, 255, 0.5)" },
-  { label: "교육", percentage: "7%", amount: "45,000원", icon: "📚", change: "-11,200원", color: "rgba(255, 159, 64, 0.5)" },
-  { label: "기타", percentage: "2%", amount: "11,400원", icon: "⭐", change: "-51,500원", color: "rgba(255, 206, 86, 0.5)" },
+  { label: "식비", percentage: "30%", amount: "184,300원", icon: CateFood, change: "+11,290원", color: "rgba(255, 99, 132, 0.5)" },
+  { label: "교통/차량", percentage: "26%", amount: "158,000원", icon: CateTraffic, change: "+9,300원", color: "rgba(75, 192, 192, 0.5)" },
+  { label: "패션/미용", percentage: "18%", amount: "112,400원", icon: CateFashion, change: "-36,000원", color: "rgba(54, 162, 235, 0.5)" },
+  { label: "문화생활", percentage: "16%", amount: "107,500원", icon: CateCulture, change: "+10,600원", color: "rgba(153, 102, 255, 0.5)" },
+  { label: "교육", percentage: "7%", amount: "45,000원", icon: CateEducation, change: "-11,200원", color: "rgba(255, 159, 64, 0.5)" },
+  { label: "기타", percentage: "2%", amount: "11,400원", icon: CateEtc, change: "-51,500원", color: "rgba(255, 206, 86, 0.5)" },
 ];
 
 const Statistics = () => {
@@ -53,9 +59,7 @@ const Statistics = () => {
           return (
             <div className="category-card" key={index}>
               <div className="category-block" style={{ backgroundColor: category.color }}>
-                <span className="category-icon" style={{ color: fontColor }}>
-                  {category.icon}
-                </span>
+                <img src={category.icon} alt={category.label} className="category-icon" />
                 <span className="category-percentage" style={{ color: fontColor }}>
                   {category.percentage}
                 </span>
