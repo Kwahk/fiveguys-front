@@ -1,3 +1,13 @@
+/* 요일 헤더에서 일요일 텍스트 스타일 */
+.react-calendar__month-view__weekdays abbr[aria-label="Sunday"] {
+    color: red !important;
+}
+
+/* 일요일 날짜 스타일 */
+.react-calendar__tile.sunday {
+    color: red !important; 
+}
+
 /* 네비게이션 바 스타일 */
 .react-calendar__navigation {
     height: 90px;
@@ -31,7 +41,6 @@
 }
 
 .react-calendar__month-view abbr {
-    color: #585757;
     font-size: 16px;
     font-weight: 500;
 }
@@ -70,6 +79,7 @@
     justify-content: flex-start;
     align-items: center;
     border: 1px solid #E8E8E8 !important;
+    color: #585757; /* 전체 폰트 색상 */
 }
 
 /* 캘린더 날짜 부분만 */
@@ -93,6 +103,7 @@
     height: auto;
     border-radius: 20px;
     border: solid 4px #F8F3EC;
+    margin-top: 40px;
   }
 
 /* 날짜 타일 스타일 */
