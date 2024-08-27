@@ -97,7 +97,6 @@
 
 /* 폼 스타일 */
 .certify-form {
-  display: flex;
   flex-direction: column;
 }
 
@@ -119,6 +118,9 @@
 }
 
 .certify-item:not(:last-child) {
+  margin-bottom: -1px;
+}
+.certify-item-double:not(:last-child) {
   margin-bottom: -1px;
 }
 
@@ -143,12 +145,77 @@
   box-sizing: border-box;
   background-color: #ffffff;
 }
+.certify-item-double {
+  width: 100%;
+  display: flex; /* Flex를 사용하여 수평 정렬 */
+  justify-content: space-between; /* 요소들 사이에 공간을 균등 분배 */
+  align-items: center; /* 요소들 수직 가운데 정렬 */
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+.certify-item-double label {
+  font-size: 10px;
+  color: #616161;
+  padding: 10px;
+  padding-bottom: 0px;
+  display: block;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  background-color: #ffffff;
+}
+
+.certify-item-double span {
+  display: flex;
+  flex-direction: column; /* 각각의 span 내에서는 세로 정렬 */
+  width: 45%; /* 각 span의 넓이를 설정하여 공간 균등 분배 */
+  box-sizing: border-box; /* 패딩과 보더를 포함하여 넓이를 계산 */
+}
+
+.certify-item-double span label {
+  margin-bottom: 5px; /* 레이블과 입력 필드 간의 간격을 추가 */
+  font-weight: 500;
+  font-size: 10px;
+  color: #616161;
+  display: block;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+}
+
+.certify-item-double input[type="date"],
+.certify-item-double input[type="radio"] {
+  margin: 0;
+  padding: 3px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border: #ffffff;
+  background-color: #ffffff;
+}
+
+.certify-item-double div {
+  display: flex;
+  align-items: center; /* 라디오 버튼과 라벨을 수직 가운데 정렬 */
+}
+
+.certify-item-double div label {
+  font-size: 14px;
+}
 
 input::placeholder {
-  color: #616161;
+  color: #9c9c9c;
 }
 #birth {
-  color: #616161;
+  color: #9c9c9c;
+}
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.certify-item input[type="password"] {
+  width: 100%;
+  padding: 3px 10px;
+  border: none;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #ffffff;
 }
 
 .password-icon {
