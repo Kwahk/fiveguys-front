@@ -6,6 +6,7 @@ import Calendar from "./components/Calendar";
 import Statistics from "./components/Statistics";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+import PWSearch from "./components/PWSearch";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
 
           {/* // http://localhost:3000/login */}
           <Route path="/login" element={<Login />}></Route>
+
+          {/* // http://localhost:3000/pwsearch */}
+          <Route path="/pwsearch" element={<PWSearch />}></Route>
 
           {/* // http://localhost:3000/calendar */}
           <Route path="/calendar" element={<Calendar />}></Route>

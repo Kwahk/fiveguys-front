@@ -9,7 +9,7 @@ const Join = () => {
           <h2 className="form-title">Sign Up</h2>
           <div className="certify-item">
             <label htmlFor="username">USERNAME</label>
-            <input type="text" id="username" placeholder="johndoe@example.com" />
+            <input type="text" id="username" placeholder="Enter Your Username" />
           </div>
           <div className="certify-item">
             <label htmlFor="birth">BIRTH</label>
@@ -17,7 +17,7 @@ const Join = () => {
           </div>
           <div className="certify-item">
             <label htmlFor="email">EMAIL ADDRESS</label>
-            <input type="email" id="email" placeholder="rndnjf@example.com" />
+            <input type="email" id="email" placeholder="Enter Your Email" />
           </div>
           <div className="certify-item">
             <label htmlFor="password">PASSWORD</label>
@@ -34,7 +34,7 @@ const Join = () => {
           </button>
         </form>
         <div className="signup-footer">
-          Already a Member? <Link to="/login">LOG IN NOW</Link>{" "}
+          Already a Member? <Link to="/login">LOG IN NOW</Link>
         </div>
       </div>
     </div>

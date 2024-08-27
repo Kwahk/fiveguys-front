@@ -69,16 +69,24 @@
   opacity: 1;
 }
 
-/* 여기부터 Join Page의 CSS 파일 */
 /* 페이지 전체 컨테이너 스타일 */
 .page-container {
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   background: linear-gradient(180deg, #f27f3e 0%, #f2c894 50%, #ffffff 100%);
+  overflow: hidden;
+}
+.page-container-search {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   overflow: hidden;
 }
 
@@ -111,25 +119,23 @@
   color: #000000;
 }
 
-/* 폼 아이템 스타일 */
 .certify-item {
-  margin-bottom: 0; /* Remove margin between items */
-  display: flex;
+  margin-bottom: 0;
   flex-direction: column;
   border: 1px solid #e0e0e0;
-  overflow: hidden; /* To keep border-radius on label and input */
-  background-color: #ffffff; /* Ensure background is white */
+  overflow: hidden;
+  background-color: #ffffff;
 }
 
 .certify-item:not(:last-child) {
-  margin-bottom: -1px; /* Overlap bottom border to remove gaps */
+  margin-bottom: -1px;
 }
 
 .certify-item label {
   font-weight: 500;
   font-size: 10px;
   color: #616161;
-  padding: 10px; /* Padding around the label */
+  padding: 10px;
   padding-bottom: 0px;
   display: block;
   font-family: "Zen Kaku Gothic Antique", sans-serif;
@@ -141,17 +147,17 @@
   padding: 3px;
   padding-left: 10px;
   padding-bottom: 5px;
-  border: none; /* Remove border from input */
+  border: none;
   font-size: 14px;
   box-sizing: border-box;
-  background-color: #ffffff; /* Ensure background is white */
+  background-color: #ffffff;
 }
 
 input::placeholder {
   color: #616161;
 }
 #birth {
-  color: #616161; /* 원하는 색상 코드로 변경 */
+  color: #616161;
 }
 
 .password-icon {
@@ -162,7 +168,6 @@ input::placeholder {
   cursor: pointer;
 }
 
-/* 버튼 스타일 */
 .submit-button {
   width: 100%;
   padding: 12px;
@@ -188,7 +193,13 @@ input::placeholder {
   text-align: center;
 }
 
-/* 텍스트 스타일 */
+.login-footer {
+  margin-top: 20px;
+  font-size: 12.8px;
+  color: #424242;
+  text-align: center;
+}
+
 .text {
   color: #757575;
   font-family: "Zen Kaku Gothic Antique", sans-serif;
@@ -198,7 +209,6 @@ input::placeholder {
   align-items: center;
 }
 
-/* 옵션 스타일 */
 .options-container {
   display: flex;
   justify-content: space-between;
@@ -209,7 +219,6 @@ input::placeholder {
   font-family: "Zen Kaku Gothic Antique", sans-serif;
 }
 
-/* 체크박스와 라벨 스타일 */
 .login-sub {
   display: flex;
   align-items: center;
@@ -222,10 +231,9 @@ input::placeholder {
   font-family: "Zen Kaku Gothic Antique", sans-serif;
 }
 
-/* 아이디/비밀번호 찾기 링크 스타일 */
 .find-options {
   display: flex;
-  gap: 15px; /* 간격 조절 */
+  gap: 15px;
 }
 
 .find-link {
@@ -236,5 +244,5 @@ input::placeholder {
 }
 
 .find-link:hover {
-  text-decoration: underline; /* 마우스 오버 효과 */
+  text-decoration: underline;
 }

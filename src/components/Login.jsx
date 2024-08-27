@@ -8,8 +8,8 @@ const Login = () => {
         <form className="certify-form">
           <h2 className="form-title">Log in&out</h2>
           <div className="certify-item">
-            <label htmlFor="username">ID (email)</label>
-            <input type="text" id="username" placeholder="johndoe@example.com" />
+            <label htmlFor="username">ID(Email)</label>
+            <input type="text" id="username" placeholder="Enter Your Email" />
           </div>
           <div className="certify-item">
             <label htmlFor="password">PASSWORD</label>
@@ -18,7 +18,7 @@ const Login = () => {
           </div>
 
           <button type="submit" className="submit-button">
-            Login
+            LOGIN
           </button>
           <div className="options-container">
             <span className="login-sub">
@@ -28,15 +28,15 @@ const Login = () => {
               </label>
             </span>
             <div className="find-options">
-              <Link to="/idsearch" className="find-link">
-                아이디 찾기
-              </Link>
               <Link to="/pwsearch" className="find-link">
                 비밀번호 찾기
               </Link>
             </div>
           </div>
         </form>
+        <div className="login-footer">
+          Not a Member? <Link to="/join">SIGN UP NOW</Link>
+        </div>
       </div>
     </div>
   );
