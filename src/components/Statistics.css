@@ -1,0 +1,103 @@
+.statistics-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 40px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.chart-container {
+  width: 680px;
+  height: 680px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.chart-container canvas {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+}
+
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 35%;
+}
+
+.category-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  gap: 8px;
+}
+
+.category-block {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 90px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.category-icon {
+  width: 30px; /* 원하는 크기로 설정 */
+  height: 30px; /* 원하는 크기로 설정 */
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2px; /* 텍스트와의 간격 */
+}
+.category-percentage {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.category-label {
+  font-size: 16px;
+  color: #757575;
+  margin: 0;
+}
+
+.category-change {
+  margin-left: auto;
+  font-size: 14px;
+  color: #757575;
+}
+.category-amount {
+  width: 80px;
+  text-align: right;
+  font-size: 16px;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 5px;
+}
+
+@media (max-width: 800px) {
+  .statistics-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .chart-container,
+  .categories-container {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .chart-container {
+    height: auto;
+  }
+}
