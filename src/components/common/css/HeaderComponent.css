@@ -6,19 +6,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  position: relative; /* 부모 요소에 상대적 위치 설정 */
+  position: relative;
   z-index: 10;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
   width: 109.2px;
   height: 24px;
-}
-
-.dropdown {
-  width: 25px;
-  height: 25px;
-  cursor: pointer; /* 커서가 포인터로 변경되도록 추가 */
 }
 
 .header-bar {
@@ -37,10 +32,9 @@
   font-size: 16px;
   color: #f27f3e;
   cursor: pointer;
+  padding: 0 20px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  position: relative;
   height: 55px;
 }
 
@@ -52,43 +46,83 @@
   height: 55px;
 }
 
+.dropdown-container {
+  width: 40px;
+  height: 55px;
+  display: flex; /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  position: relative; /* 드롭다운 메뉴 위치 설정을 위한 상대 위치 지정 */
+}
+
+.dropdown-icon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 .dropdown-menu {
+  display: none; /* 기본적으로 숨겨진 상태 */
   position: absolute;
-  top: 62px; /* 헤더의 높이와 일치하도록 조정 */
-  right: 22px; /* 우측 정렬 */
-  width: 98px;
+  top: 64px; /* 드롭다운이 나타날 위치 */
+  right: 12px; /* 오른쪽 끝 정렬 */
+  width: 140px;
+  flex-direction: column;
+  align-items: center;
+  align-items: center; /* 모든 자식 요소를 중앙 정렬 */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(-10px);
+  z-index: 100;
 }
 
 .dropdown-menu.show {
-  display: flex; /* 클릭 시 표시되도록 추가 */
-  background: #f8f3ec;
-  flex-direction: column; /* 세로 방향 정렬을 위해 추가 */
+  padding: 0px;
+  display: flex; /* show 클래스가 있을 때 flex로 표시 */
+  opacity: 1;
+  transform: translateY(0);
+  background-color: #f8f3ec;
+  color: #f27f3e;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* 메뉴 너비를 부모에 맞게 */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 자식 요소를 중앙 정렬 */
+}
+
+.menu-item {
+  padding: 10px;
+  width: 100%; /* 메뉴 아이템을 부모에 맞게 */
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #f9ecda;
+  border-radius: 8px;
+}
+
+.menu-line {
+  width: 36%; /* 구분선 너비 */
+  height: 1px; /* 구분선 높이 */
+  background-color: #f2803e8f; /* 구분선 색상 */
+  margin: 2px 0; /* 위아래 여백 */
 }
 
 .dropdown-menu a {
   text-decoration: none;
   color: #f27f3e;
-  padding: 4px 0;
   width: 100%;
+  display: block; /* 링크를 블록으로 */
   text-align: center;
-  display: flex; /* 플렉스 박스로 설정 */
-  align-items: center; /* 수직 가운데 정렬 */
-  justify-content: center; /* 수평 가운데 정렬 */
-  height: 40px; /* 메뉴 항목의 높이 설정 */
-}
-
-.dropdown-menu a:hover {
-  background-color: #f9ecda;
-  border-radius: 8px;
-}
-/* 구분선 스타일 */
-.dropdown-divider {
-  width: 24px;
-  height: 1px;
-  background-color: #f27f3e; /* 메뉴 색상과 동일한 색상 */
-  margin: 0 auto; /* 중앙 수직 정렬 */
-  margin-top: 4px; /* 상단 여백 추가 */
-  margin-bottom: 4px; /* 하단 여백 추가 */
+  transition: background-color 0.3s ease;
 }
