@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Cookies from "js-cookie"; // js-cookie 라이브러리 추가
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"; 
+import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState(""); // 이메일 상태 추가
-  const [password, setPassword] = useState(""); // 패스워드 상태 추가
-  const [rememberEmail, setRememberEmail] = useState(false); // 이메일 저장 체크박스 상태 추가
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState(""); 
+  const [rememberEmail, setRememberEmail] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // 페이지 로드 시 쿠키에서 이메일을 불러옴
+  const navigate = useNavigate(); 
+
   useEffect(() => {
     const savedEmail = Cookies.get("savedEmail");
     if (savedEmail) {
@@ -16,16 +19,24 @@ const Login = () => {
     }
   }, []);
 
-  // 로그인 폼 제출 시 실행
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // 이메일 저장 여부 확인 후 쿠키에 저장 또는 삭제
+
     if (rememberEmail) {
-      Cookies.set("savedEmail", email, { expires: 7 }); // 7일 동안 이메일 쿠키 저장
+      Cookies.set("savedEmail", email, { expires: 7 }); 
     } else {
       Cookies.remove("savedEmail");
     }
-    // 여기에 실제 로그인 로직을 추가하세요.
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/innout/login", { email, password });
+
+      if (response.status === 200) {
+        navigate("/calendar"); 
+      }
+    } catch (error) {
+      setErrorMessage("Login failed: Incorrect email or password.");
+    }
   };
 
   return (
@@ -34,6 +45,8 @@ const Login = () => {
       <div className="certify-container">
         <form className="certify-form" onSubmit={handleSubmit}>
           <h2 className="form-title">Log in&out</h2>
+          
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
           <div className="certify-item">
             <label htmlFor="email">ID (email)</label>
             <input
@@ -41,7 +54,7 @@ const Login = () => {
               id="username"
               placeholder="Enter Your Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // 이메일 상태 업데이트
+              onChange={(e) => setEmail(e.target.value)} 
             />
           </div>
           <div className="certify-item">
@@ -51,7 +64,7 @@ const Login = () => {
               id="password"
               placeholder="********"
               value={password}
-              onChange={(e) => setPassword(e.target.value)} // 패스워드 상태 업데이트
+              onChange={(e) => setPassword(e.target.value)} 
             />
             <div className="password-icon">{/* Add eye icon here */}</div>
           </div>
@@ -66,7 +79,7 @@ const Login = () => {
                 id="checkId"
                 name="checkId"
                 checked={rememberEmail}
-                onChange={(e) => setRememberEmail(e.target.checked)} // 체크박스 상태 업데이트
+                onChange={(e) => setRememberEmail(e.target.checked)} 
               />
               <label htmlFor="checkId" className="checkbox-label">
                 아이디 저장
