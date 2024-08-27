@@ -29,7 +29,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post("/api/innout/login", { email, password });
+      const response = await axios.post("http://localhost:8080/api/innout/login", { email, password });
 
       if (response.status === 200) {
         navigate("/calendar"); 
