@@ -14,6 +14,9 @@ export default function Calendar() {
     if (date.getDay() === 0) {
       return 'sunday'; 
     }
+    if (date.getDay() === 6) {
+      return 'saturday'; 
+    }
     return null; 
   };
 

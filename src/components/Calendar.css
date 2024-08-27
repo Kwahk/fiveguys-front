@@ -3,10 +3,21 @@
     color: red !important;
 }
 
-/* 일요일 날짜 스타일 */
-.react-calendar__tile.sunday {
-    color: red !important; 
+.react-calendar__month-view__weekdays abbr[aria-label="Saturday"] {
+    color: blue !important;
 }
+
+
+/* 일요일 날짜 스타일 */
+/*.react-calendar__tile.sunday {
+    color: red !important; 
+}*/
+
+/* 토요일 날짜 스타일 */
+/*.react-calendar__tile.saturday {
+    color: blue !important; 
+}*/
+
 
 /* 네비게이션 바 스타일 */
 .react-calendar__navigation {
