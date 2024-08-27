@@ -23,12 +23,15 @@
 
 .header-list {
   list-style: none;
+  color: #f27f3e;
+
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-.header-item {
+.header-item,
+.header-list a {
   font-size: 16px;
   color: #f27f3e;
   cursor: pointer;
@@ -36,23 +39,17 @@
   display: flex;
   align-items: center;
   height: 55px;
-}
-
-.header-list a {
   text-decoration: none;
   color: inherit;
-  display: flex;
-  align-items: center;
-  height: 55px;
 }
 
 .dropdown-container {
   width: 40px;
   height: 55px;
-  display: flex; /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center; /* 수직 중앙 정렬 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  position: relative; /* 드롭다운 메뉴 위치 설정을 위한 상대 위치 지정 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .dropdown-icon {
@@ -62,25 +59,22 @@
 }
 
 .dropdown-menu {
-  display: none; /* 기본적으로 숨겨진 상태 */
   position: absolute;
-  top: 64px; /* 드롭다운이 나타날 위치 */
-  right: 12px; /* 오른쪽 끝 정렬 */
+  top: 64px;
+  right: 12px;
   width: 140px;
   flex-direction: column;
   align-items: center;
-  align-items: center; /* 모든 자식 요소를 중앙 정렬 */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   opacity: 0;
-  transform: translateY(-10px);
   z-index: 100;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dropdown-menu.show {
-  padding: 0px;
-  display: flex; /* show 클래스가 있을 때 flex로 표시 */
+  display: flex;
   opacity: 1;
   transform: translateY(0);
   background-color: #f8f3ec;
@@ -91,23 +85,25 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 100%; /* 메뉴 너비를 부모에 맞게 */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 자식 요소를 중앙 정렬 */
+  align-items: center;
 }
 
-.menu-item {
-  padding: 10px;
-  width: 100%; /* 메뉴 아이템을 부모에 맞게 */
+.menu-item,
+.menu-item link {
+  width: 158px;
   height: 50px;
   text-align: center;
+  align-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .menu-item a {
-  margin: auto;
-  width: 158px; /* 메뉴 아이템을 부모에 맞게 */
+  margin: 0px;
+  width: 158px;
   height: 50px;
 }
 
@@ -117,8 +113,8 @@
 }
 
 .menu-line {
-  width: 36%; /* 구분선 너비 */
-  height: 1px; /* 구분선 높이 */
-  background-color: #f2803e8f; /* 구분선 색상 */
-  margin: 2px 0; /* 위아래 여백 */
+  width: 36%;
+  height: 1px;
+  background-color: #f2803e8f;
+  margin: 2px 0;
 }
