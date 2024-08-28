@@ -91,17 +91,7 @@ const HeaderComponent = () => {
           </Link>
           <li className="dropdown-container">
             <img src={Dropdown} alt="Dropdown" className="dropdown-icon" onClick={DropdownHandler} />
-            <div className={`dropdown-menu ${isDropdownVisible ? "show" : ""}`}>
-              <ul className="menu">
-                <Link to="/">
-                  <li className="menu-item">Logout</li>
-                </Link>
-                <li className="menu-line"></li>
-                <Link to="/mypage">
-                  <li className="menu-item">Mypage</li>
-                </Link>
-              </ul>
-            </div>
+            <div className={`dropdown-menu ${isDropdownVisible ? "show" : ""}`}>{renderDropdownMenu()}</div>
           </li>
         </ul>
       </nav>
