@@ -1,18 +1,28 @@
-// Calendar.jsx
 import React, { useState } from 'react';
 import ReactCalendar from 'react-calendar';
 import moment from 'moment';
+import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';
 import CalendarModal from './CalendarModal';
 
-export default function Calendar() {
+export default function Calendar({ events }) {
   const curDate = new Date();
   const [value, onChange] = useState(curDate);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalEvents, setModalEvents] = useState([]);
 
-  const handleDateClick = () => {
-    setIsModalOpen(true);
+  const handleDateClick = async () => {
+    const selectedDate = moment(value).format('YYYY-MM-DD');
+
+    try {
+      const response = await axios.get(`http://localhost:8080/api/innout/events/${selectedDate}`);
+      setModalEvents(response.data);
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error('Error fetching events:', error);
+      alert('이벤트를 가져오는 데 실패했습니다.');
+    }
   };
 
   const handleCloseModal = () => {
@@ -47,6 +57,7 @@ export default function Calendar() {
         isOpen={isModalOpen} 
         onClose={handleCloseModal} 
         selectedDate={moment(value).format('YYYY-MM-DD')} 
+        events={modalEvents}
       />
     </div>
   );

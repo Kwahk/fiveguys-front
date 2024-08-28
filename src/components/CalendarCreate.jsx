@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import moment from 'moment';
 import './CalendarCreate.css';
 
-function CalendarCreate() {
+function CalendarCreate({ onAddEvent }) {
     const [selectedDate, setSelectedDate] = useState(moment().format('YYYY-MM-DD'));
-    const [events, setEvents] = useState([]);
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
     const [type, setType] = useState('');
@@ -16,21 +16,46 @@ function CalendarCreate() {
         setSelectedDate(e.target.value); 
     };
 
-    const handleAddEvent = () => {
+    const handleAddEvent = async () => {
         if (selectedDate && description && amount && category) {
-            setEvents([
-                ...events,
-                {
+            try {
+                const formData = new FormData();
+                formData.append('date', selectedDate);
+                formData.append('description', description);
+                formData.append('amount', amount);
+                formData.append('type', type);
+                formData.append('category', category);
+                if (file) {
+                    formData.append('file', file);
+                }
+
+                const response = await axios.post('http://localhost:8080/api/innout/events', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                // 이벤트가 성공적으로 추가된 후 이벤트 상태 업데이트
+                const newEvent = {
                     title: `${type}: ${description} - ${amount}원`,
                     date: selectedDate,
                     file: file,
-                },
-            ]);
-            setDescription('');
-            setAmount('');
-            setCategory('');
-            setFile(null);
-            setImagePreview(null); // Clear the image preview after adding the event
+                    fileUrl: URL.createObjectURL(file),
+                    category,
+                    amount
+                };
+
+                onAddEvent(newEvent);
+
+                setDescription('');
+                setAmount('');
+                setCategory('');
+                setFile(null);
+                setImagePreview(null);
+            } catch (error) {
+                console.error('Error adding event:', error);
+                alert('이벤트 추가에 실패했습니다.');
+            }
         } else {
             alert('모든 필드를 입력해주세요.');
         }
