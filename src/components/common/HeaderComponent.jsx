@@ -37,7 +37,7 @@ const HeaderComponent = () => {
                   <li className="menu-item">Logout</li>
                 </Link>
                 <li className="menu-line"></li>
-                <Link to="/">
+                <Link to="/mypage">
                   <li className="menu-item">Mypage</li>
                 </Link>
               </ul>

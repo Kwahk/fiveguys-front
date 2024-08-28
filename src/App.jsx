@@ -6,7 +6,9 @@ import CalendarPage from "./components/CalendarPage";
 import Statistics from "./components/Statistics";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+import MyPage from "./components/mypage";
 import PWSearch from "./components/PWSearch";
+import ChangePassword from "./components/ChangePassword";
 
 function App() {
   return (
@@ -34,6 +36,12 @@ function App() {
 
           {/* // http://localhost:3000/statistics */}
           <Route path="/statistics" element={<Statistics />}></Route>
+
+          {/* // http://localhost:3000/mypage */}
+          <Route path="/mypage" element={<MyPage />}></Route>
+
+          {/* // http://localhost:3000/change-password */}
+          <Route path="/change-password" element={<ChangePassword />}></Route>
         </Routes>
       </BrowserRouter>
     </>
