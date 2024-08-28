@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
-import axios from "axios"; // axios 추가
-import Cookies from "js-cookie"; // js-cookie 라이브러리 추가
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberEmail, setRememberEmail] = useState(false);
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedEmail = Cookies.get("savedEmail");
@@ -20,15 +20,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (rememberEmail) {
-      Cookies.set("savedEmail", email, { expires: 7 }); // 7일 동안 이메일 쿠키 저장
+      Cookies.set("savedEmail", email, { expires: 7 });
     } else {
       Cookies.remove("savedEmail");
     }
 
-    // 로그인 요청 전송
     try {
       const response = await axios.post("http://localhost:8080/api/innout/login", { email, password });
-      console.log("Login successful:", response.data);
+      const responseData = response.data;
 
       // JWT 토큰을 로컬 스토리지에 저장
       const token = response.data; // 서버에서 토큰을 직접 응답받는다고 가정
@@ -56,7 +55,6 @@ const Login = () => {
           <div className="certify-item">
             <label htmlFor="password">PASSWORD</label>
             <input type="password" id="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <div className="password-icon">{/* Add eye icon here */}</div>
           </div>
 
           <button type="submit" className="submit-button">
