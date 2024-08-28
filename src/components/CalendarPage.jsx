@@ -1,8 +1,7 @@
 // src/components/CalendarPage.jsx
 
-import React from 'react';
-import CalendarCreate from './CalendarCreate';
-import Calendar from './Calendar';
+import CalendarCreate from "./CalendarCreate";
+import Calendar from "./Calendar";
 
 function CalendarPage() {
   return (
