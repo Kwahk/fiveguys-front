@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import MyPage from "./components/mypage";
 import PWSearch from "./components/PWSearch";
 import ChangePassword from "./components/ChangePassword";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
 
           {/* // http://localhost:3000/change-password */}
           <Route path="/change-password" element={<ChangePassword />}></Route>
+
+          {/* // http://localhost:3000/profile */}
+          <Route path="/profile" element={<Profile />}></Route>
         </Routes>
       </BrowserRouter>
     </>
