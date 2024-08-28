@@ -109,8 +109,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
 
       if (response.ok) {
         console.log("Event updated successfully!");
-        setEditingIndex(null); // Exit editing mode on success
-        onClose();
+        setEditingIndex(null);
       } else {
         console.error("Failed to update event.");
       }
@@ -118,6 +117,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
       console.error("Error updating event:", error);
     }
   };
+
   const handleDeleteClick = async (index) => {
     const eventToDelete = editedEvents[index];
 
@@ -134,7 +134,6 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
         console.log("Event deleted successfully!");
         setEditedEvents((prevEvents) => prevEvents.filter((_, i) => i !== index));
         setEditingIndex(null);
-        onClose();
       } else {
         console.error("Failed to delete event.");
       }
@@ -151,6 +150,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
   const renderEventItem = (event, index) => {
     const { background, textColor } = getColorTheme(event.category.id);
     const isEditing = editingIndex === index;
+
     return (
       <div key={index} className={`event-item event-${event.category.id}`}>
         <div className="event-category-group" style={{ backgroundColor: background }}>
@@ -205,11 +205,17 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
     );
   };
 
+  // Calculate the total amount of all events
+  const totalAmount = editedEvents.reduce((sum, event) => sum + event.amount, 0);
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div className="date-display">{formattedDate}</div>
+          <div className="total-amount" style={{ textAlign: "right", flexGrow: 1 }}>
+            Total: {totalAmount}원
+          </div>
         </div>
         {editedEvents.length === 0 ? <p>No events registered.</p> : editedEvents.map((event, index) => renderEventItem(event, index))}
       </div>
