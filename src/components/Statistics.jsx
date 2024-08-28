@@ -64,7 +64,7 @@ const Statistics = () => {
         const response = await fetch(`http://localhost:8080/api/innout/transaction/${userId}`, {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            Authorization: `${localStorage.getItem("jwtToken")}`,
             "Content-Type": "application/json",
           },
         });
