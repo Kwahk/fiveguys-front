@@ -74,9 +74,38 @@
   color: #333;
   flex: 1;
 }
+input.event-description {
+  width: 50px;
+
+  margin-left: 10px;
+  color: #333;
+  flex: 1;
+}
 
 .event-amount {
   font-size: 12px;
   color: #333;
   margin-left: 10px;
+}
+.event-amount :focus {
+  font-size: 12px;
+  color: #333;
+  width: 50px;
+}
+
+.edit-button,
+.save-button {
+  background-color: #f27f3e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 10px; /* 좌측 마진 추가 */
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-button:hover,
+.save-button:hover {
+  background-color: #e0662f;
 }

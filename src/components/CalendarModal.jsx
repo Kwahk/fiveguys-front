@@ -44,7 +44,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
 
   if (!isOpen) return null;
 
-  const formattedDate = format(new Date(selectedDate), "MMMM, yyyy");
+  const formattedDate = format(new Date(selectedDate), "yyyy, MMMM dd");
 
   const getColorTheme = (categoryId) => {
     const categoryMap = {

@@ -63,7 +63,7 @@ function CalendarCreate() {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // JSON 형식 지정
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            Authorization: `${localStorage.getItem("jwtToken")}`,
           },
           body: JSON.stringify(payload), // 객체를 JSON 문자열로 변환
         });
