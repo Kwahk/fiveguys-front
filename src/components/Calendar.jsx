@@ -3,14 +3,14 @@ import ReactCalendar from "react-calendar";
 import moment from "moment";
 import "react-calendar/dist/Calendar.css";
 import "./Calendar.css";
-import CalendarModal from "./CalendarModal"; // 모달 컴포넌트 임포트
+import CalendarModal from "./CalendarModal";
 import { jwtDecode } from "jwt-decode";
 
 export default function Calendar() {
-  const [selectedDate, setSelectedDate] = useState(new Date()); // 초기 상태를 오늘 날짜로 설정
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림 상태, 초기값을 false로 설정
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [userId, setUserId] = useState("");
-  const [modalEvents, setModalEvents] = useState([]); // Add state to hold events for the modal
+  const [modalEvents, setModalEvents] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
@@ -20,35 +20,50 @@ export default function Calendar() {
         setUserId(decodedToken.sub);
       } catch (error) {
         console.error("JWT decoding failed:", error);
-        return; // JWT decoding failed, do not proceed further
+        return;
       }
     }
   }, []);
 
-  const handleDateClick = async (date) => {
-    setSelectedDate(date);
-    const formattedDate = moment(date).format("YYYY-MM-DD");
-    const response = await fetch(`http://localhost:8080/api/innout/transaction/${userId}`, {
-      method: "GET",
-      headers: {
-        Authorization: `${localStorage.getItem("jwtToken")}`,
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      const transactions = await response.json();
-      console.log("Transactions are: \n", transactions);
-
-      const filteredTransactions = transactions.filter((transaction) => transaction.date === formattedDate);
-      setModalEvents(filteredTransactions); // Set data for modal
-      setIsModalOpen(true); // Open the modal
-    } else {
-      console.log("Failed to fetch transactions.");
+  const fetchTransactions = async (date) => {
+    if (!userId) {
+      console.error("User ID is not available.");
+      return;
     }
+
+    const formattedDate = moment(date).format("YYYY-MM-DD");
+    try {
+      const response = await fetch(`http://localhost:8080/api/innout/transaction/${userId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `${localStorage.getItem("jwtToken")}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const transactions = await response.json();
+        console.log("Transactions are: \n", transactions);
+
+        const filteredTransactions = transactions.filter((transaction) => transaction.date === formattedDate);
+        setModalEvents(filteredTransactions);
+      } else {
+        console.error("Failed to fetch transactions.");
+      }
+    } catch (error) {
+      console.error("Error fetching transactions:", error);
+    }
+  };
+
+  const handleDateClick = (date) => {
+    setSelectedDate(date);
+    fetchTransactions(date);
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    fetchTransactions(selectedDate);
   };
 
   const tileClassName = ({ date }) => {
