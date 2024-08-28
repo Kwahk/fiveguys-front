@@ -27,7 +27,6 @@ const Login = () => {
 
     try {
       const response = await axios.post("http://localhost:8080/api/innout/login", { email, password });
-      const responseData = response.data;
 
       // JWT 토큰을 로컬 스토리지에 저장
       const token = response.data; // 서버에서 토큰을 직접 응답받는다고 가정
