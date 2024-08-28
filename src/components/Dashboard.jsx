@@ -86,10 +86,10 @@ const Dashboard = () => {
                 <span>{item.group.replace('-', ' ')}은 {item.category} 분야에서<br />
                 가장 높은 금액을 소비하고 있습니다.</span>
               </div>
-              <div className='badge' style={{ backgroundColor: getBadgeColor(item.category) }}>
+              <div className='badge' style={{ backgroundColor: getBadgeColor(item.category)  }}>
                 <img src={getBadgeIcon(item.category)} alt={`${item.category} icon`} className='badge-icon' />
-                <div className='amount'>{item.amount.toLocaleString()} 원</div>
                 <div className='group'>{item.group.replace('-', ' ')}</div>
+                <div className='amount'>{item.amount.toLocaleString()} 원</div>
               </div>
             </div>
           ))}
