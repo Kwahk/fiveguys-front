@@ -22,12 +22,12 @@ const getCategoryIcon = (categoryId) => {
 };
 
 const colorThemes = {
-  food: { background: "#FFC6C1", border: "#E02F24", textColor: "#E02F24" },
-  traffic: { background: "#C8FFDF", border: "#10E36C", textColor: "#10E36C" },
-  fashion: { background: "#BFDFFF", border: "#2E9BFE", textColor: "#2E9BFE" },
-  culture: { background: "#CAC9FF", border: "#8251FE", textColor: "#8251FE" },
-  education: { background: "#FFD3B2", border: "#FE7C12", textColor: "#FE7C12" },
-  etc: { background: "#FFF6C8", border: "#FAC400", textColor: "#FAC400" },
+  food: { background: "#FFC6C1", textColor: "#E02F24" },
+  traffic: { background: "#C8FFDF", textColor: "#10E36C" },
+  fashion: { background: "#BFDFFF", textColor: "#2E9BFE" },
+  culture: { background: "#CAC9FF", textColor: "#8251FE" },
+  education: { background: "#FFD3B2", textColor: "#FE7C12" },
+  etc: { background: "#FFF6C8", textColor: "#FAC400" },
 };
 
 const categoryOptions = [
@@ -110,11 +110,36 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
       if (response.ok) {
         console.log("Event updated successfully!");
         setEditingIndex(null); // Exit editing mode on success
+        onClose();
       } else {
         console.error("Failed to update event.");
       }
     } catch (error) {
       console.error("Error updating event:", error);
+    }
+  };
+  const handleDeleteClick = async (index) => {
+    const eventToDelete = editedEvents[index];
+
+    try {
+      const response = await fetch(`http://localhost:8080/api/innout/${eventToDelete.id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `${localStorage.getItem("jwtToken")}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        console.log("Event deleted successfully!");
+        setEditedEvents((prevEvents) => prevEvents.filter((_, i) => i !== index));
+        setEditingIndex(null);
+        onClose();
+      } else {
+        console.error("Failed to delete event.");
+      }
+    } catch (error) {
+      console.error("Error deleting event:", error);
     }
   };
 
@@ -124,12 +149,11 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
   };
 
   const renderEventItem = (event, index) => {
-    const { background, border, textColor } = getColorTheme(event.category.id);
+    const { background, textColor } = getColorTheme(event.category.id);
     const isEditing = editingIndex === index;
-
     return (
       <div key={index} className={`event-item event-${event.category.id}`}>
-        <div className="event-category-group" style={{ borderColor: border, backgroundColor: background }}>
+        <div className="event-category-group" style={{ backgroundColor: background }}>
           <img src={getCategoryIcon(event.category.id)} alt={event.category.name} className="event-icon" />
           {isEditing ? (
             <select
@@ -161,6 +185,9 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
           <>
             <input type="text" value={event.description} onChange={(e) => handleInputChange(index, "description", e.target.value)} className="event-description" />
             <input type="number" value={event.amount} onChange={(e) => handleInputChange(index, "amount", e.target.value)} className="event-amount" />
+            <button className="delete-button" onClick={() => handleDeleteClick(index)}>
+              삭제
+            </button>
             <button className="save-button" onClick={handleSaveClick}>
               완료
             </button>
