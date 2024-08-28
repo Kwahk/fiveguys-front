@@ -27,7 +27,9 @@ const ChangePassword = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Authorization 헤더에 토큰 포함
+            "Content-Type": "application/json", // JSON 형식 지정
+
+            Authorization: `${token}`, // Authorization 헤더에 토큰 포함
           },
         }
       );

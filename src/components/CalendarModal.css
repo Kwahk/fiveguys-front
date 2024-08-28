@@ -27,6 +27,22 @@
   margin-bottom: 20px;
 }
 
+.modal-correction {
+  background-color: white;
+  font-size: 16px;
+  color: #333;
+  padding: 5px;
+  margin-left: 20px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  border-color: #999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-correction:hover {
+  background-color: #eeeeee;
+}
+
 .event-item {
   display: flex;
   align-items: center;
@@ -34,7 +50,7 @@
   padding: 10px;
   border: 2px solid transparent; /* 기본 테두리 스타일 */
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .event-icon {
@@ -60,7 +76,7 @@
 }
 
 .event-amount {
-  font-size: 16px;
+  font-size: 12px;
   color: #333;
   margin-left: 10px;
 }

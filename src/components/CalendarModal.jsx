@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CalendarModal.css";
-import { format } from "date-fns"; // Assuming you use date-fns for date formatting
+import { format } from "date-fns";
 import CateFood from "../assets/Cate_Food.png";
 import CateTraffic from "../assets/Cate_Traffic.png";
 import CateFashion from "../assets/Cate_Fashion.png";
@@ -17,8 +17,9 @@ const getCategoryIcon = (categoryId) => {
     5: CateEducation,
     6: CateEtc,
   };
-  return icons[categoryId] || CateEtc; // Default icon set to 'Etc'
+  return icons[categoryId] || CateEtc;
 };
+
 const colorThemes = {
   food: { background: "#FFC6C1", border: "#E02F24", textColor: "#E02F24" },
   traffic: { background: "#C8FFDF", border: "#10E36C", textColor: "#10E36C" },
@@ -29,11 +30,13 @@ const colorThemes = {
 };
 
 const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedEvents, setEditedEvents] = useState(events);
+
   if (!isOpen) return null;
 
-  const formattedDate = format(new Date(selectedDate), "MMMM, yyyy"); // 날짜 형식 지정
+  const formattedDate = format(new Date(selectedDate), "MMMM, yyyy");
 
-  // 카테고리 ID를 colorThemes의 키로 변환하는 함수
   const getColorTheme = (categoryId) => {
     const categoryMap = {
       1: "food",
@@ -46,27 +49,68 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
     return colorThemes[categoryMap[categoryId]] || colorThemes.etc;
   };
 
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleInputChange = (index, field, value) => {
+    const updatedEvents = [...editedEvents];
+    updatedEvents[index][field] = value;
+    setEditedEvents(updatedEvents);
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <div className="date-display">{formattedDate}</div> {/* 날짜 표시 */}
+          <div className="date-display">{formattedDate}</div>
+          <button className="modal-correction" onClick={handleEditToggle}>
+            {isEditing ? "완료" : "수정하기"}
+          </button>
         </div>
-        {events.length === 0 ? (
+        {editedEvents.length === 0 ? (
           <p>No events registered.</p>
         ) : (
-          events.map((event, index) => {
-            const { background, border, textColor } = getColorTheme(event.category.id); // 각 이벤트의 색상 테마 가져오기
+          editedEvents.map((event, index) => {
+            const { background, border, textColor } = getColorTheme(event.category.id);
             return (
               <div key={index} className={`event-item event-${event.category.id}`}>
                 <div className="event-category-group" style={{ borderColor: border, backgroundColor: background }}>
                   <img src={getCategoryIcon(event.category.id)} alt={event.category.name} className="event-icon" />
-                  <div className="event-category" style={{ color: textColor, fontWeight: "bold" }}>
-                    {event.category.name}
-                  </div>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={event.category.name}
+                      onChange={(e) => handleInputChange(index, "category", { ...event.category, name: e.target.value })}
+                      className="event-category" // 기존 className 유지
+                      style={{ color: textColor, fontWeight: "bold" }}
+                    />
+                  ) : (
+                    <div className="event-category" style={{ color: textColor, fontWeight: "bold" }}>
+                      {event.category.name}
+                    </div>
+                  )}
                 </div>
-                <div className="event-description">{event.description}</div>
-                <div className="event-amount">{`${event.amount}원`}</div>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={event.description}
+                    onChange={(e) => handleInputChange(index, "description", e.target.value)}
+                    className="event-description" // 기존 className 유지
+                  />
+                ) : (
+                  <div className="event-description">{event.description}</div>
+                )}
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={event.amount}
+                    onChange={(e) => handleInputChange(index, "amount", e.target.value)}
+                    className="event-amount" // 기존 className 유지
+                  />
+                ) : (
+                  <div className="event-amount">{`${event.amount}원`}</div>
+                )}
               </div>
             );
           })
