@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import profileIcon from '../assets/profile.png';
-import passwordIcon from '../assets/password.png';
-import logoutIcon from '../assets/logout.png';
-import './mypage.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import profileIcon from "../assets/profile.png";
+import passwordIcon from "../assets/password.png";
+import logoutIcon from "../assets/logout.png";
+import "./mypage.css";
 
 function MyPage() {
   return (
