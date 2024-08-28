@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./CalendarModal.css";
 import { format } from "date-fns";
 import CateFood from "../assets/Cate_Food.png";
@@ -7,6 +7,7 @@ import CateFashion from "../assets/Cate_Fashion.png";
 import CateCulture from "../assets/Cate_Culture.png";
 import CateEducation from "../assets/Cate_Education.png";
 import CateEtc from "../assets/Cate_Etc.png";
+import { jwtDecode } from "jwt-decode";
 
 const getCategoryIcon = (categoryId) => {
   const icons = {
@@ -21,12 +22,12 @@ const getCategoryIcon = (categoryId) => {
 };
 
 const colorThemes = {
-  food: { background: "#FFC6C1", textColor: "#E02F24" },
-  traffic: { background: "#C8FFDF", textColor: "#10E36C" },
-  fashion: { background: "#BFDFFF", textColor: "#2E9BFE" },
-  culture: { background: "#CAC9FF", textColor: "#8251FE" },
-  education: { background: "#FFD3B2", textColor: "#FE7C12" },
-  etc: { background: "#FFF6C8", textColor: "#FAC400" },
+  food: { background: "#FFC6C1", border: "#E02F24", textColor: "#E02F24" },
+  traffic: { background: "#C8FFDF", border: "#10E36C", textColor: "#10E36C" },
+  fashion: { background: "#BFDFFF", border: "#2E9BFE", textColor: "#2E9BFE" },
+  culture: { background: "#CAC9FF", border: "#8251FE", textColor: "#8251FE" },
+  education: { background: "#FFD3B2", border: "#FE7C12", textColor: "#FE7C12" },
+  etc: { background: "#FFF6C8", border: "#FAC400", textColor: "#FAC400" },
 };
 
 const categoryOptions = [
@@ -41,6 +42,20 @@ const categoryOptions = [
 const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
   const [editingIndex, setEditingIndex] = useState(null);
   const [editedEvents, setEditedEvents] = useState([]);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        setUserId(decodedToken.sub);
+      } catch (error) {
+        console.error("JWT decoding failed:", error);
+        return;
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const formattedSelectedDate = format(new Date(selectedDate), "yyyy-MM-dd");
@@ -68,8 +83,39 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
     setEditingIndex(index);
   };
 
-  const handleSaveClick = () => {
-    setEditingIndex(null);
+  const handleSaveClick = async () => {
+    if (editingIndex === null) return;
+
+    const eventToSave = editedEvents[editingIndex];
+
+    const payload = {
+      id: eventToSave.id,
+      date: eventToSave.date,
+      amount: eventToSave.amount,
+      categoryId: eventToSave.category.id,
+      userId: userId,
+      description: eventToSave.description,
+    };
+
+    try {
+      const response = await fetch(`http://localhost:8080/api/innout/${eventToSave.id}`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `${localStorage.getItem("jwtToken")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        console.log("Event updated successfully!");
+        setEditingIndex(null); // Exit editing mode on success
+      } else {
+        console.error("Failed to update event.");
+      }
+    } catch (error) {
+      console.error("Error updating event:", error);
+    }
   };
 
   const handleInputChange = (index, field, value) => {
@@ -78,12 +124,12 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
   };
 
   const renderEventItem = (event, index) => {
-    const { background, textColor } = getColorTheme(event.category.id);
+    const { background, border, textColor } = getColorTheme(event.category.id);
     const isEditing = editingIndex === index;
 
     return (
       <div key={index} className={`event-item event-${event.category.id}`}>
-        <div className="event-category-group" style={{ backgroundColor: background }}>
+        <div className="event-category-group" style={{ borderColor: border, backgroundColor: background }}>
           <img src={getCategoryIcon(event.category.id)} alt={event.category.name} className="event-icon" />
           {isEditing ? (
             <select
