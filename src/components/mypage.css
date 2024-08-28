@@ -1,23 +1,31 @@
 .mypage-container {
-  padding: 20px;
+  padding: 20px 20px 30px 20px;
   background-color: #F8F3EC;
   border-radius: 8px;
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
-  margin-top: 100px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .mypage-container h1 {
-  font-size: 24px;
+  font-size: 26px;
   color: #333;
   margin-bottom: 10px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .mypage-container p {
   font-size: 16px;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .settings-list {
@@ -39,21 +47,21 @@
 
 .settings-item a {
   text-decoration: none;
-  color: inherit; /* 링크 색상도 텍스트 색상과 동일하게 유지 */
+  color: inherit;
   display: flex;
-  align-items: center; /* 이미지와 텍스트를 수직 중앙 정렬 */
+  align-items: center; 
 }
 
 .settings-item a:hover {
-  text-decoration: none; /* 호버 상태에서도 밑줄을 없애기 위해 추가 */
+  text-decoration: none;
 }
 
 .settings-item:hover {
   background-color: #f0f0f0;
 }
 
-.icon {
-  width: 24px; /* 아이콘 크기 조정 */
-  height: 24px; /* 아이콘 크기 조정 */
-  margin-right: 10px; /* 이미지와 텍스트 간의 간격 조정 */
+.picon {
+  width: 24px; 
+  height: 24px; 
+  margin-right: 10px;
 }

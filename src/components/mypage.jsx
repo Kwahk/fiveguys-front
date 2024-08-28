@@ -24,19 +24,19 @@ function MyPage() {
       <ul className="settings-list">
         <li className="settings-item">
           <Link to="/profile">
-            <img src={profileIcon} alt="Profile Icon" className="icon" />
+            <img src={profileIcon} alt="Profile Icon" className="picon" />
             profile
           </Link>
         </li>
         <li className="settings-item">
           <Link to="/change-password">
-            <img src={passwordIcon} alt="Password Icon" className="icon" />
+            <img src={passwordIcon} alt="Password Icon" className="picon" />
             change password
           </Link>
         </li>
         <li className="settings-item">
           <div onClick={handleLogout} className="logout-button">
-            <img src={logoutIcon} alt="Logout Icon" className="icon" />
+            <img src={logoutIcon} alt="Logout Icon" className="picon" />
             log out
           </div>
         </li>
