@@ -49,6 +49,7 @@ const Login = () => {
       <div className="certify-container">
         <form className="certify-form" onSubmit={handleSubmit}>
           <h2 className="form-title">Log in&out</h2>
+        
           <div className="certify-item">
             <label htmlFor="email">ID (email)</label>
             <input type="text" id="email" placeholder="Enter Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
