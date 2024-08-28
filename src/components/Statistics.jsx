@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import { jwtDecode } from "jwt-decode"; // jwtDecode 함수 사용
 import "./Statistics.css";
 import CateFood from "../assets/Cate_Food.png";
 import CateTraffic from "../assets/Cate_Traffic.png";
@@ -42,6 +44,24 @@ const categories = [
 ];
 
 const Statistics = () => {
+  const [userId, setUserId] = useState(""); // userId 상태 추가
+  const [transactions, setTransactions] = useState([]); // 거래 내역 상태 추가
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded token:", decodedToken); // 전체 디코딩된 토큰 출력
+        const userId = decodedToken.userId; // userId 경로 확인
+        setUserId(userId);
+        console.log("Decoded user id:", userId);
+      } catch (error) {
+        console.error("Error decoding JWT token:", error);
+      }
+    }
+  }, []);
+
   return (
     <div className="statistics-container">
       <div className="chart-container">
