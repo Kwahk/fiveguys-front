@@ -48,7 +48,7 @@ function CalendarCreate() {
         return;
       }
       const adjustedAmount = type === "수입" ? Math.abs(amount) : -Math.abs(amount); // 수입은 양수, 지출은 음수로 처리
-
+      console.log(userId);
       const payload = {
         date: selectedDate,
         amount: adjustedAmount,
