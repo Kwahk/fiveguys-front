@@ -3,13 +3,14 @@ import ReactCalendar from "react-calendar";
 import moment from "moment";
 import "react-calendar/dist/Calendar.css";
 import "./Calendar.css";
-// import CalendarModal from "./CalendarModal"; // 모달 컴포넌트 임포트
+import CalendarModal from "./CalendarModal"; // 모달 컴포넌트 임포트
 import { jwtDecode } from "jwt-decode";
 
 export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState(new Date()); // 초기 상태를 오늘 날짜로 설정
-  // const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림 상태, 초기값을 false로 설정
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림 상태, 초기값을 false로 설정
   const [userId, setUserId] = useState("");
+  const [modalEvents, setModalEvents] = useState([]); // Add state to hold events for the modal
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
@@ -36,19 +37,19 @@ export default function Calendar() {
     });
     if (response.ok) {
       const transactions = await response.json();
-      console.log("거래 내역은: \n", transactions);
+      console.log("Transactions are: \n", transactions);
 
       const filteredTransactions = transactions.filter((transaction) => transaction.date === formattedDate);
-      // setModalEvents(filteredTransactions);
-      // setIsModalOpen(true);
+      setModalEvents(filteredTransactions); // Set data for modal
+      setIsModalOpen(true); // Open the modal
     } else {
-      console.log("거래내역을 불러오지 못했습니다.");
+      console.log("Failed to fetch transactions.");
     }
   };
 
-  // const handleCloseModal = () => {
-  //   setIsModalOpen(false);
-  // };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const tileClassName = ({ date }) => {
     if (date.getDay() === 0) {
@@ -71,10 +72,10 @@ export default function Calendar() {
         formatDay={(locale, date) => moment(date).format("D")}
         tileClassName={tileClassName}
         showNeighboringMonth={false}
-        onClickDay={handleDateClick} // 사용자가 날짜를 클릭할 때만 handleDateClick 호출
+        onClickDay={handleDateClick}
       />
 
-      {/* <CalendarModal isOpen={isModalOpen} onClose={handleCloseModal} selectedDate={moment(selectedDate).format("YYYY-MM-DD")} events={modalEvents} /> */}
+      <CalendarModal isOpen={isModalOpen} onClose={handleCloseModal} selectedDate={moment(selectedDate).format("YYYY-MM-DD")} events={modalEvents} />
     </div>
   );
 }
