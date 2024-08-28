@@ -9,9 +9,12 @@ function MyPage() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("jwtToken");
-    navigate("/"); // Redirect to the main page
-    window.location.reload(); // Reload the page
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      localStorage.removeItem("jwtToken");
+      navigate("/");
+      window.location.reload();
+    }
   };
 
   return (
