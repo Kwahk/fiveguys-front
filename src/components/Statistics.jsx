@@ -43,45 +43,43 @@ const categories = [
   { label: "기타", percentage: "2%", amount: "11,400원", icon: CateEtc, change: "-51,500원", color: colorThemes.etc.background, borderColor: colorThemes.etc.border },
 ];
 const Statistics = () => {
-  const [userId, setUserId] = useState(""); // userId 상태 추가
-  const [transactions, setTransactions] = useState([]); // 거래 내역 상태 추가
+  const [userId, setUserId] = useState("");
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        console.log("All claims:", JSON.stringify(decodedToken, null, 2));
-
-        // 필요한 클레임을 상태로 설정 (예: userId)
-        if (decodedToken.sub) {
-          setUserId(decodedToken.sub); // Use the sub claim as userId
-        }
+        setUserId(decodedToken.sub);
       } catch (error) {
-        console.error("Error decoding JWT token:", error);
+        console.error("JWT decoding failed:", error);
       }
     }
   }, []);
 
-  // Log userId when it changes
   useEffect(() => {
     if (userId) {
-      fetchTransactions(userId); // Fetch transactions when userId is set
-    }
-  }, [userId]);
+      const fetchData = async () => {
+        const response = await fetch(`http://localhost:8080/api/innout/transaction/${userId}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
 
-  const fetchTransactions = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:8080/transaction?email=${id}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setTransactions(data);
-    } catch (error) {
-      console.error("Error fetching transactions:", error);
+        if (response.ok) {
+          const transactions = await response.json();
+          setTransactions(transactions);
+          console.log("거래 내역은: \n", transactions);
+        } else {
+          console.log("거래내역을 불러오지 못했습니다.");
+        }
+      };
+      fetchData();
     }
-  };
+  }, [userId]); // 의존성 배열에 userId 추가
 
   return (
     <div className="statistics-container">
