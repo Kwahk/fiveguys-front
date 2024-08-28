@@ -42,7 +42,6 @@ const categories = [
   { label: "교육", percentage: "7%", amount: "45,000원", icon: CateEducation, change: "-11,200원", color: colorThemes.education.background, borderColor: colorThemes.education.border },
   { label: "기타", percentage: "2%", amount: "11,400원", icon: CateEtc, change: "-51,500원", color: colorThemes.etc.background, borderColor: colorThemes.etc.border },
 ];
-
 const Statistics = () => {
   const [userId, setUserId] = useState(""); // userId 상태 추가
   const [transactions, setTransactions] = useState([]); // 거래 내역 상태 추가
@@ -52,15 +51,38 @@ const Statistics = () => {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        console.log("Decoded token:", decodedToken); // 전체 디코딩된 토큰 출력
-        const userId = decodedToken.userId; // userId 경로 확인
-        setUserId(userId);
-        console.log("Decoded user id:", userId);
+        console.log("All claims:", JSON.stringify(decodedToken, null, 2));
+
+        // 필요한 클레임을 상태로 설정 (예: userId)
+        if (decodedToken.sub) {
+          setUserId(decodedToken.sub); // Use the sub claim as userId
+        }
       } catch (error) {
         console.error("Error decoding JWT token:", error);
       }
     }
   }, []);
+
+  // Log userId when it changes
+  useEffect(() => {
+    if (userId) {
+      console.log("User id:", userId);
+      fetchTransactions(userId); // Fetch transactions when userId is set
+    }
+  }, [userId]);
+
+  const fetchTransactions = async (email) => {
+    try {
+      const response = await fetch(`http://localhost:8080/transaction?email=${email}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setTransactions(data);
+    } catch (error) {
+      console.error("Error fetching transactions:", error);
+    }
+  };
 
   return (
     <div className="statistics-container">
