@@ -1,0 +1,116 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* 사각형들 사이의 간격 */
+  padding: 20px;
+  justify-content: center; /* 컨테이너 내 요소들을 가운데 정렬 */
+}
+
+/* 모든 사각형 스타일 */
+.rectangle {
+  background: #F8F3EC;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 560px; /* 최대 너비 */
+  height: auto;
+  aspect-ratio: 0.93; /* 비율 유지 */
+  position: relative; /* 자식 요소들을 상대적으로 배치 */
+}
+
+.frame3,
+.frame2,
+.frame1 {
+  width: 28%; /* 컨테이너 너비의 28% */
+  height: 8%; /* 컨테이너 높이의 8% */
+  position: absolute;
+  top: 5%; /* 위에서 5% 내려온 위치에 배치 */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  text-align: center;
+}
+
+.frame3 {
+  left: 5%; /* 왼쪽에서 5% 떨어진 위치에 배치 */
+}
+
+.frame2 {
+  left: 36%; /* 왼쪽에서 37% 떨어진 위치에 배치 */
+}
+
+.frame1 {
+  right: 5%; /* 왼쪽에서 69% 떨어진 위치에 배치 */
+}
+
+.boardCategory {
+  position: absolute;
+  width: 90%;
+  height: auto;
+  top: 20%;
+  left: 5%;
+  background: #F8F3EC;
+  border-radius: 8px;
+  padding: 20px; /* 테두리에서의 간격을 위해 패딩 추가 */
+  overflow: hidden; /* 페이지네이션을 고려해 콘텐츠가 넘치지 않도록 설정 */
+}
+
+.category-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px; /* 카드들 사이의 간격 추가 */
+}
+
+.category-card .content {
+  display: flex;
+  align-items: center; /* 카테고리, 그룹, 금액을 가로로 정렬 */
+  font-size: 14px;
+  width: 60%;
+}
+.badge {
+  display: flex;
+  flex-direction:row; 
+  align-items: center;
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  padding: 15px 20px; /* 배지 크기를 키움 */
+  border-radius: 8px;
+  min-width: 150px; /* 배지의 최소 너비 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.amount, .group {
+  color: black;
+}
+.badge-icon {
+  width: 24px; /* 아이콘 크기 조정 */
+  height: 24px; /* 아이콘 크기 조정 */
+  margin-right: 10px; /* 아이콘과 텍스트 사이의 간격 */
+}
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
