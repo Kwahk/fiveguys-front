@@ -29,8 +29,17 @@ const colorThemes = {
   etc: { background: "#FFF6C8", border: "#FAC400", textColor: "#FAC400" },
 };
 
+const categoryOptions = [
+  { id: 1, name: "식비" },
+  { id: 2, name: "교통/차량" },
+  { id: 3, name: "패션/미용" },
+  { id: 4, name: "문화생활" },
+  { id: 5, name: "교육" },
+  { id: 6, name: "기타" },
+];
+
 const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
   const [editedEvents, setEditedEvents] = useState(events);
 
   if (!isOpen) return null;
@@ -49,8 +58,12 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
     return colorThemes[categoryMap[categoryId]] || colorThemes.etc;
   };
 
-  const handleEditToggle = () => {
-    setIsEditing(!isEditing);
+  const handleEditClick = (index) => {
+    setEditingIndex(index);
+  };
+
+  const handleSaveClick = () => {
+    setEditingIndex(null);
   };
 
   const handleInputChange = (index, field, value) => {
@@ -64,9 +77,6 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div className="date-display">{formattedDate}</div>
-          <button className="modal-correction" onClick={handleEditToggle}>
-            {isEditing ? "완료" : "수정하기"}
-          </button>
         </div>
         {editedEvents.length === 0 ? (
           <p>No events registered.</p>
@@ -77,39 +87,49 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
               <div key={index} className={`event-item event-${event.category.id}`}>
                 <div className="event-category-group" style={{ borderColor: border, backgroundColor: background }}>
                   <img src={getCategoryIcon(event.category.id)} alt={event.category.name} className="event-icon" />
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      value={event.category.name}
-                      onChange={(e) => handleInputChange(index, "category", { ...event.category, name: e.target.value })}
-                      className="event-category" // 기존 className 유지
+                  {editingIndex === index ? (
+                    <select
+                      value={event.category.id}
+                      onChange={(e) =>
+                        handleInputChange(index, "category", {
+                          ...event.category,
+                          id: parseInt(e.target.value),
+                          name: categoryOptions.find((opt) => opt.id === parseInt(e.target.value)).name,
+                        })
+                      }
+                      className="event-category"
                       style={{ color: textColor, fontWeight: "bold" }}
-                    />
+                    >
+                      {categoryOptions.map((option) => (
+                        <option key={option.id} value={option.id}>
+                          {option.name}
+                        </option>
+                      ))}
+                    </select>
                   ) : (
                     <div className="event-category" style={{ color: textColor, fontWeight: "bold" }}>
                       {event.category.name}
                     </div>
                   )}
                 </div>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={event.description}
-                    onChange={(e) => handleInputChange(index, "description", e.target.value)}
-                    className="event-description" // 기존 className 유지
-                  />
+                {editingIndex === index ? (
+                  <input type="text" value={event.description} onChange={(e) => handleInputChange(index, "description", e.target.value)} className="event-description" />
                 ) : (
                   <div className="event-description">{event.description}</div>
                 )}
-                {isEditing ? (
-                  <input
-                    type="number"
-                    value={event.amount}
-                    onChange={(e) => handleInputChange(index, "amount", e.target.value)}
-                    className="event-amount" // 기존 className 유지
-                  />
+                {editingIndex === index ? (
+                  <input type="number" value={event.amount} onChange={(e) => handleInputChange(index, "amount", e.target.value)} className="event-amount" />
                 ) : (
                   <div className="event-amount">{`${event.amount}원`}</div>
+                )}
+                {editingIndex === index ? (
+                  <button className="save-button" onClick={handleSaveClick}>
+                    완료
+                  </button>
+                ) : (
+                  <button className="edit-button" onClick={() => handleEditClick(index)}>
+                    수정하기
+                  </button>
                 )}
               </div>
             );
