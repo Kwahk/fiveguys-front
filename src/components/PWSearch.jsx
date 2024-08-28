@@ -22,7 +22,7 @@ const PWSearch = () => {
             <input type="text" id="username" placeholder="Enter Your Name" />
           </div>
           <button type="submit" className="submit-button">
-            TEPORARY PASSWARD
+           TEMPORARY PASSWORD
           </button>
           <div className="signup-footer">
             <Link to="/login" className="find-link">
