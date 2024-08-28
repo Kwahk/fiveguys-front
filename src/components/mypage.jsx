@@ -1,15 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import profileIcon from '../assets/profile.png';
+import passwordIcon from '../assets/password.png';
+import logoutIcon from '../assets/logout.png';
 import './mypage.css';
 
 function MyPage() {
   return (
     <div className="mypage-container">
-      <h1>마이 페이지</h1>
-      <p>여기서 사용자 정보를 확인하거나 관리할 수 있습니다.</p>
+      <h1>Mypage</h1>
+      <p>Here you can view or manage your user information.</p>
       <ul className="settings-list">
-        <li className="settings-item"><Link to="/profile">프로필 정보</Link></li>
-        <li className="settings-item"><Link to="/change-password">비밀번호 변경</Link></li>
+        <li className="settings-item">
+          <Link to="/profile">
+            <img src={profileIcon} alt="Profile Icon" className="icon" />
+            profile
+          </Link>
+        </li>
+        <li className="settings-item">
+          <Link to="/change-password">
+            <img src={passwordIcon} alt="Password Icon" className="icon" />
+            change password
+          </Link>
+        </li>
+        <li className="settings-item">
+          <Link to="/">
+            <img src={logoutIcon} alt="logout Icon" className="icon" />
+            log out
+          </Link>
+        </li>
       </ul>
     </div>
   );
