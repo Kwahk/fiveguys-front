@@ -1,108 +1,80 @@
-/* 모달 오버레이 */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* 모달 콘텐츠 */
-  .modal-content {
-    background: #ffffff !important;
-    border-radius: 20px !important;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-  }
-  
-  /* 닫기 버튼 */
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #F8F3EC;
-    border: none;
-    border-radius: 50%; 
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* 모달 헤더 */
-  .modal-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  /* 날짜 표시 */
-  .date-display {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  /* 카테고리와 아이콘 컨테이너 */
-  .rectangle-57 {
-    display: flex;
-    align-items: center;
-    background: #FFC6C1;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  /* 아이콘 클래스 */
-  .icon-fast-food {
-    width: 40px;
-    height: 40px;
-    background-image: url('../assets/Cate_Food.png');
-    background-size: cover;
-    background-position: center;
-    margin-right: 10px;
-  }
-  
-  /* 카테고리 이름 */
-  .category-name {
-    font-size: 16px;
-    font-weight: 500;
-  }
-  
-  /* 모달 본문 */
-  .modal-body {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* 지출 항목 */
-  .expense-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  /* 카테고리 */
-  .category {
-    font-size: 14px;
-  }
-  
-  /* 금액 */
-  .amount {
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+}
+
+.modal-header {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* General modal styles remain unchanged */
+
+/* Event item styles with category-specific colors */
+.event-1 {
+  background-color: #ff6961;
+} /* Example color for Food */
+.event-2 {
+  background-color: #77dd77;
+} /* Example color for Traffic */
+.event-3 {
+  background-color: #fdfd96;
+} /* Example color for Fashion */
+.event-4 {
+  background-color: #84b6f4;
+} /* Example color for Culture */
+.event-5 {
+  background-color: #fdcae1;
+} /* Example color for Education */
+.event-6 {
+  background-color: #cfcfc4;
+} /* Example color for Etc */
+
+.event-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff; /* Assuming white text for better contrast on colored backgrounds */
+}
+
+.event-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.event-category {
+  font-weight: bold;
+  color: #555;
+  flex: 1; /* Take remaining space */
+}
+
+.event-description {
+  margin-left: auto;
+  color: #999;
+}
+
+.event-amount {
+  font-size: 16px;
+  color: #333;
+  margin-left: 10px; /* Space before amount */
+}
