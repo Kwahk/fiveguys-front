@@ -66,14 +66,13 @@ const Statistics = () => {
   // Log userId when it changes
   useEffect(() => {
     if (userId) {
-      console.log("User id:", userId);
       fetchTransactions(userId); // Fetch transactions when userId is set
     }
   }, [userId]);
 
-  const fetchTransactions = async (email) => {
+  const fetchTransactions = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8080/transaction?email=${email}`);
+      const response = await fetch(`http://localhost:8080/transaction?email=${id}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
