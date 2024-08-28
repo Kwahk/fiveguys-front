@@ -1,13 +1,7 @@
 import React from 'react';
 import './CalendarModal.css';
-import CateFood from '../assets/Cate_Food.png';
-import CateTraffic from '../assets/Cate_Traffic.png';
-import CateFashion from '../assets/Cate_Fashion.png';
-import CateCulture from '../assets/Cate_Culture.png';
-import CateEducation from '../assets/Cate_Education.png';
-import CateEtc from '../assets/Cate_Etc.png';
 
-const CalendarModal = ({ isOpen, onClose, selectedDate }) => {
+const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
   if (!isOpen) return null;
 
   return (
@@ -16,21 +10,23 @@ const CalendarModal = ({ isOpen, onClose, selectedDate }) => {
         <button className="close-button" onClick={onClose}>X</button>
         <div className="modal-header">
           <div className="date-display">{selectedDate}</div>
-          <div className="rectangle-57">
-            <div className="icon-fast-food"></div>
-            <div className="category-name">식비</div>
-          </div>
         </div>
         <div className="modal-body">
-          <div className="expense-item">
-            <div className="category">편의점</div>
-            <div className="amount">2,900원</div>
-          </div>
-          <div className="expense-item">
-            <div className="category">주유</div>
-            <div className="amount">50,000원</div>
-          </div>
-          {/* 추가 항목들을 여기에 넣으세요 */}
+          {events.length === 0 ? (
+            <p>등록된 이벤트가 없습니다.</p>
+          ) : (
+            events.map((event, index) => (
+              <div key={index} className="expense-item">
+                <div className="category">{event.category}</div>
+                <div className="amount">{event.amount}원</div>
+                {event.fileUrl && (
+                  <div className="image-preview">
+                    <img src={event.fileUrl} alt="첨부파일" />
+                  </div>
+                )}
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
