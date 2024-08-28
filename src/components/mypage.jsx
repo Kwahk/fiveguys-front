@@ -1,11 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import profileIcon from "../assets/profile.png";
 import passwordIcon from "../assets/password.png";
 import logoutIcon from "../assets/logout.png";
 import "./mypage.css";
 
 function MyPage() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    navigate("/"); // Redirect to the main page
+    window.location.reload(); // Reload the page
+  };
+
   return (
     <div className="mypage-container">
       <h1>Mypage</h1>
@@ -24,10 +32,10 @@ function MyPage() {
           </Link>
         </li>
         <li className="settings-item">
-          <Link to="/">
-            <img src={logoutIcon} alt="logout Icon" className="icon" />
+          <div onClick={handleLogout} className="logout-button">
+            <img src={logoutIcon} alt="Logout Icon" className="icon" />
             log out
-          </Link>
+          </div>
         </li>
       </ul>
     </div>
