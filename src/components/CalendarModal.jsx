@@ -1,5 +1,5 @@
-import React from 'react';
-import './CalendarModal.css';
+import React from "react";
+import "./CalendarModal.css";
 
 const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
   if (!isOpen) return null;
@@ -7,7 +7,9 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button className="close-button" onClick={onClose}>X</button>
+        <button className="close-button" onClick={onClose}>
+          X
+        </button>
         <div className="modal-header">
           <div className="date-display">{selectedDate}</div>
         </div>
