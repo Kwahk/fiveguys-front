@@ -28,8 +28,9 @@
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  justify-content: center;
-  text-align: center;
+  align-items: center; 
+  justify-content: center; 
+  display: flex;
 }
 
 .frame3 {
@@ -44,6 +45,19 @@
   right: 5%; /* 왼쪽에서 69% 떨어진 위치에 배치 */
 }
 
+.frame-font {
+  display: block;
+  font-size: 14px;
+  text-align: center !important;
+  font-weight: 700;
+  margin: 0;
+}
+
+.repoicon {
+  width: 20px;
+  margin-right: 10px;
+}
+
 .boardCategory {
   position: absolute;
   width: 90%;
@@ -52,7 +66,7 @@
   left: 5%;
   background: #F8F3EC;
   border-radius: 8px;
-  padding: 20px; /* 테두리에서의 간격을 위해 패딩 추가 */
+  padding: 20px 0px; /* 테두리에서의 간격을 위해 패딩 추가 */
   overflow: hidden; /* 페이지네이션을 고려해 콘텐츠가 넘치지 않도록 설정 */
 }
 
@@ -75,30 +89,31 @@
   font-size: 14px;
   width: 60%;
 }
+
 .badge {
   display: flex !important;
   flex-direction:row; 
   align-items: center;
   justify-content: flex-start; /* 왼쪽 정렬 */
-  padding: 15px; /* 배지 크기를 키움 */
+  padding: 16px; /* 배지 크기를 키움 */
   border-radius: 8px;
-  min-width: 150px; /* 배지의 최소 너비 설정 */
+  max-width: 240px; /* 배지의 최소 너비 설정 */
   text-align: center; /* 텍스트 중앙 정렬 */
 }
 
 .group {
   color: black;
-  font-size: 15px;
+  font-size: 16px;
 }
 .amount {
   color: #676464;
-  margin-left: 5px; 
-  font-size: 10px;
+  margin-left: 8px; 
+  font-size: 13px;
 }
 .badge-icon {
   width: 24px; /* 아이콘 크기 조정 */
   height: 24px; /* 아이콘 크기 조정 */
-  margin-right: 10px; /* 아이콘과 텍스트 사이의 간격 */
+  margin-right: 8px; /* 아이콘과 텍스트 사이의 간격 */
 }
 .pagination {
   margin-top: 10px;

@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import './common/css/Dashboard.css'; // Import the CSS file
 
 // 이미지 파일들을 import
-import food from 'src/assets/food.png';
-import traffic from 'src/assets/traffic.png';
-import fashion from 'src/assets/fashion.png';
-import culture from 'src/assets/culture.png';
-import education from 'src/assets/education.png';
-import etc from 'src/assets/etc.png';
+import food from 'src/assets/Cate_Food.png';
+import traffic from 'src/assets/Cate_Traffic.png';
+import fashion from 'src/assets/Cate_Fashion.png';
+import culture from 'src/assets/Cate_Culture.png';
+import education from 'src/assets/Cate_Education.png';
+import etc from 'src/assets/Cate_Etc.png';
+import board from 'src/assets/Repo_Board.png';
+import rank from 'src/assets/Repo_Rank.png';
+import achievements from 'src/assets/Repo_Achievements.png';
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -76,9 +79,18 @@ const Dashboard = () => {
   return (
     <div className='dashboard-container'>
       <div className='rectangle'>
-        <div className='frame3'>Board</div>
-        <div className='frame2'>Rank</div>
-        <div className='frame1'>Achievements</div>
+        <div className='frame3'>
+          <img src={board} alt="Board Icon" className="repoicon"/>
+          <h3 className='frame-font'>Board</h3>
+        </div>
+        <div className='frame2'>
+          <img src={rank} alt="Rank Icon" className="repoicon"/>
+          <h3 className='frame-font'>Rank</h3>
+        </div>
+        <div className='frame1'>
+          <img src={achievements} alt="Achievements Icon" className="repoicon"/>
+          <h3 className='frame-font'>Achievements</h3>
+        </div>
         <div className='boardCategory'>
           {currentItems.map((item, index) => (
             <div key={index} className='category-card'>
