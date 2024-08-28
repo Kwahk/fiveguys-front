@@ -4,19 +4,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
-.modal-content {
-  background: white;
+.modal-box {
+  background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 600px;
+  z-index: 1001;
 }
 
 .modal-header {
@@ -25,56 +27,40 @@
   margin-bottom: 20px;
 }
 
-/* General modal styles remain unchanged */
-
-/* Event item styles with category-specific colors */
-.event-1 {
-  background-color: #ff6961;
-} /* Example color for Food */
-.event-2 {
-  background-color: #77dd77;
-} /* Example color for Traffic */
-.event-3 {
-  background-color: #fdfd96;
-} /* Example color for Fashion */
-.event-4 {
-  background-color: #84b6f4;
-} /* Example color for Culture */
-.event-5 {
-  background-color: #fdcae1;
-} /* Example color for Education */
-.event-6 {
-  background-color: #cfcfc4;
-} /* Example color for Etc */
-
 .event-item {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   padding: 10px;
+  border: 2px solid transparent; /* 기본 테두리 스타일 */
   border-radius: 5px;
-  color: #fff; /* Assuming white text for better contrast on colored backgrounds */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .event-icon {
   width: 50px;
   height: 50px;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
-.event-category {
-  font-weight: bold;
+.event-category-group {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
   color: #555;
-  flex: 1; /* Take remaining space */
 }
 
 .event-description {
-  margin-left: auto;
-  color: #999;
+  margin-left: 10px;
+  color: #333;
+  flex: 1;
 }
 
 .event-amount {
   font-size: 16px;
   color: #333;
-  margin-left: 10px; /* Space before amount */
+  margin-left: 10px;
 }
