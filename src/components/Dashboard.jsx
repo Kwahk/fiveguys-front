@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
-import './common/css/Dashboard.css'; // Import the CSS file
+import { useState, useEffect } from "react";
+import "./common/css/Dashboard.css"; // Import the CSS file
 
 // 이미지 파일들을 import
-import food from 'src/assets/Cate_Food.png';
-import traffic from 'src/assets/Cate_Traffic.png';
-import fashion from 'src/assets/Cate_Fashion.png';
-import culture from 'src/assets/Cate_Culture.png';
-import education from 'src/assets/Cate_Education.png';
-import etc from 'src/assets/Cate_Etc.png';
-import board from 'src/assets/Repo_Board.png';
-import rank from 'src/assets/Repo_Rank.png';
-import achievements from 'src/assets/Repo_Achievements.png';
+import food from "src/assets/Cate_Food.png";
+import traffic from "src/assets/Cate_Traffic.png";
+import fashion from "src/assets/Cate_Fashion.png";
+import culture from "src/assets/Cate_Culture.png";
+import education from "src/assets/Cate_Education.png";
+import etc from "src/assets/Cate_Etc.png";
+import board from "src/assets/Repo_Board.png";
+import rank from "src/assets/Repo_Rank.png";
+import achievements from "src/assets/Repo_Achievements.png";
+import { jwtDecode } from "jwt-decode";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -142,21 +143,21 @@ const Dashboard = () => {
   const spendingDifference = userSpending && averageSpending ? userSpending.totalSpending - averageSpending.averageSpending : null;
 
   return (
-    <div className='dashboard-container'>
-      <div className='rectangle'>
-        <div className='frame3'>
-          <img src={board} alt="Board Icon" className="repoicon"/>
-          <h3 className='frame-font'>Board</h3>
+    <div className="dashboard-container">
+      <div className="rectangle">
+        <div className="frame3">
+          <img src={board} alt="Board Icon" className="repoicon" />
+          <h3 className="frame-font">Board</h3>
         </div>
-        <div className='frame2'>
-          <img src={rank} alt="Rank Icon" className="repoicon"/>
-          <h3 className='frame-font'>Rank</h3>
+        <div className="frame2">
+          <img src={rank} alt="Rank Icon" className="repoicon" />
+          <h3 className="frame-font">Rank</h3>
         </div>
-        <div className='frame1'>
-          <img src={achievements} alt="Achievements Icon" className="repoicon"/>
-          <h3 className='frame-font'>Achievements</h3>
+        <div className="frame1">
+          <img src={achievements} alt="Achievements Icon" className="repoicon" />
+          <h3 className="frame-font">Achievements</h3>
         </div>
-        <div className='boardCategory'>
+        <div className="boardCategory">
           {currentItems.map((item, index) => (
             <div key={index} className="category-card">
               <div className="content">
