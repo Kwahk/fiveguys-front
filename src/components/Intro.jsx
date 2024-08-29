@@ -1,8 +1,8 @@
 import "./PageCss.css";
 import IntelliJLogo from "../assets/IntelliJ.png";
-import VSCodeLogo from "../assets/vscode.png";
+import VSCodeLogo from "../assets/Vscode.png";
 import DockerLogo from "../assets/docker.png";
-import AWSLogo from "../assets/aws.png";
+import AWSLogo from "../assets/AWS.png";
 import FooterComponent from "./common/FooterComponent";
 
 const Intro = () => {
