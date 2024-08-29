@@ -59,10 +59,10 @@ const Join = () => {
             <span>
               <label>GENDER</label>
               <div>
-                <input type="radio" id="male" name="gender" value="male" checked={formData.gender === "male"} onChange={handleGenderChange} />
-                <label htmlFor="male">Male</label>
-                <input type="radio" id="female" name="gender" value="female" checked={formData.gender === "female"} onChange={handleGenderChange} />
-                <label htmlFor="female">Female</label>
+                <input type="radio" id="male" name="gender" value="남성" checked={formData.gender === "남성"} onChange={handleGenderChange} />
+                <label htmlFor="남성">Male</label>
+                <input type="radio" id="female" name="gender" value="여성" checked={formData.gender === "여성"} onChange={handleGenderChange} />
+                <label htmlFor="여성">Female</label>
               </div>
             </span>
           </div>

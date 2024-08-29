@@ -223,7 +223,13 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
             </div>
           )}
         </div>
-        {editedEvents.length === 0 ? <p>No events registered.</p> : editedEvents.map((event, index) => renderEventItem(event, index))}
+        <div className="modal-content">
+          {editedEvents.length === 0 ? (
+            <p>No events registered.</p> 
+          ) : (
+            editedEvents.map((event, index) => renderEventItem(event, index))
+          )}
+        </div>
       </div>
     </div>
   );

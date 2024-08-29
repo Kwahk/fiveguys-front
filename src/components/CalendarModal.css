@@ -17,7 +17,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 90%;
-  max-width: 600px;
+  max-width: 560px;
+  max-height: 700px;
   z-index: 1001;
 }
 
@@ -113,4 +114,11 @@ input.event-amount {
 .edit-button:hover,
 .save-button:hover {
   background-color: #e0662f;
+}
+
+/* 스크롤 기능 */
+.modal-content {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
