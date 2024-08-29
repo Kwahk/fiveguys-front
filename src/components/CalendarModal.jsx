@@ -7,6 +7,9 @@ import CateFashion from "../assets/Cate_Fashion.png";
 import CateCulture from "../assets/Cate_Culture.png";
 import CateEducation from "../assets/Cate_Education.png";
 import CateEtc from "../assets/Cate_Etc.png";
+import modal_edit from "../assets/modal_edit.png";
+import modal_trash from "../assets/modal_trash.png";
+import modal_check from "../assets/modal_check.png";
 import { jwtDecode } from "jwt-decode";
 
 // 숫자를 천 단위로 포맷하는 함수
@@ -191,10 +194,10 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
             <input type="text" value={event.description} onChange={(e) => handleInputChange(index, "description", e.target.value)} className="event-description" />
             <input type="number" value={event.amount} onChange={(e) => handleInputChange(index, "amount", e.target.value)} className="event-amount" />
             <button className="delete-button" onClick={() => handleDeleteClick(index)}>
-              삭제
+              <img src={modal_trash} alt="trash Icon" className="micon" />
             </button>
             <button className="save-button" onClick={handleSaveClick}>
-              완료
+              <img src={modal_check} alt="check Icon" className="micon" />
             </button>
           </>
         ) : (
@@ -202,7 +205,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
             <div className="event-description">{event.description}</div>
             <div className="event-amount">{formatNumber(event.amount)}</div>
             <button className="edit-button" onClick={() => handleEditClick(index)}>
-              수정하기
+              <img src={modal_edit} alt="edit Icon" className="micon" />
             </button>
           </>
         )}
