@@ -1,52 +1,57 @@
 .profile-container {
-    width: 400px;
-    padding: 30px 20px 20px 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    background-color: #F8F3EC;
-    box-shadow: 0px 82px 40px rgba(100, 100, 100, 0.078);
-    margin: 0 auto; 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center; 
-  }
-  
-  .profile-title {
-    margin-bottom: 30px;
-    font-family: "Zen Kaku Gothic Antique", sans-serif;
-    font-weight: 600;
-    font-size: 26px;
-    color: #333;
-  }
-  
-  .profile-info {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    padding: 40px 40px 4px 40px;
-    border-radius: 10px;
-    text-align: left;
-  }
-  
-  .profile-item {
-    margin-bottom: 36px;
-  }
-  
-  .profile-label {
-    font-weight: 500;
-    color: #555;
-  }
-  
-  .profile-value {
-    margin-left: 5px;
-    color: #333;
-  }
-  
-  .icon {
-    width: 46px; /* 이미지의 너비 설정 */
-    height: auto; /* 이미지의 비율 유지 */
-    margin: 0px 0px 5px 0px;
-  }
-  
+  width: 400px;
+  padding: 30px 20px 20px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f8f3ec;
+  box-shadow: 0px 82px 40px rgba(100, 100, 100, 0.078);
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.profile-title {
+  margin-bottom: 30px;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  color: #333;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.profile-item {
+  display: flex; /* 플렉스 박스로 설정 */
+  align-items: center; /* 세로 중앙 정렬 */
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-label {
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+}
+
+.profile-value {
+  margin-left: auto; /* 오른쪽 정렬 */
+  font-size: 18px;
+  color: #333;
+}
+
+.icon {
+  width: 46px; /* 이미지의 너비 설정 */
+  height: auto; /* 이미지의 비율 유지 */
+}
