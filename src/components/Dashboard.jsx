@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [userSpending, setUserSpending] = useState(null);
   const [categoryComparison, setCategoryComparison] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 5;
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
@@ -144,22 +144,24 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="rectangle">
-        <div className="frame3">
-          <img src={board} alt="Board Icon" className="repoicon" />
-          <h3 className="frame-font">Board</h3>
-        </div>
-        <div className="frame2">
-          <img src={rank} alt="Rank Icon" className="repoicon" />
-          <h3 className="frame-font">Rank</h3>
-        </div>
-        <div className="frame1">
-          <img src={achievements} alt="Achievements Icon" className="repoicon" />
-          <h3 className="frame-font">Achievements</h3>
+      <div className="rectangle rectangle-left">
+        <div className="button-container">
+          <button className="frame">
+            <img src={board} alt="Board Icon" className="repoicon" />
+            <h3 className="frame-font">Board</h3>
+          </button>
+          <button className="frame">
+            <img src={rank} alt="Rank Icon" className="repoicon" />
+            <h3 className="frame-font">Rank</h3>
+          </button>
+          <button className="frame">
+            <img src={achievements} alt="Achievements Icon" className="repoicon" />
+            <h3 className="frame-font">Achievements</h3>
+          </button>
         </div>
         <div className="boardCategory">
           {currentItems.map((item, index) => (
-            <div key={index} className="category-card">
+            <div key={index} className="board-card">
               <div className="content">
                 <span>
                   {item.group.replace("-", " ")}은 {item.category} 분야에서
@@ -184,24 +186,24 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="rectangle rectangle-right">
-        <h3>사용자의 지출 내역과 동연령대 비교</h3>
+        <h3 className="spending-comparison-title">사용자의 지출 내역과 동연령대 비교</h3>
         {averageSpending && averageSpending.averageSpending !== undefined ? (
-          <div>
+          <div className="average-spending">
             <p>
               동연령대({averageSpending.userAgeGroup}) 평균 지출: {averageSpending.averageSpending.toLocaleString()} 원
             </p>
           </div>
         ) : (
-          <p>평균 지출 데이터를 불러올 수 없습니다.</p>
+          <p className="no-data">평균 지출 데이터를 불러올 수 없습니다.</p>
         )}
         {userSpending && (
-          <div>
+          <div className="user-spending">
             <p>사용자의 총 지출: {userSpending.totalSpending.toLocaleString()} 원</p>
             {spendingDifference !== null && <p>동연령대 평균 지출과의 차이: {spendingDifference.toLocaleString()} 원</p>}
           </div>
         )}
 
-        <h4>카테고리별 지출 비교</h4>
+        <h4 className="category-comparison-title">카테고리별 지출 비교</h4>
         {Object.keys(categoryComparison).map((category, index) => {
           const userSpending = categoryComparison[category].userSpending;
           const averageSpending = categoryComparison[category].averageSpending;
@@ -209,7 +211,7 @@ const Dashboard = () => {
           const percentageDifference = (difference / averageSpending) * 100;
 
           return (
-            <div key={index} className="category-comparison">
+            <div key={index} className="category-comparison-item">
               <img src={getBadgeIcon(category)} alt={`${category} icon`} className="badge-icon" />
               <p>
                 {category}: 사용자 {userSpending.toLocaleString()} 원, 동연령대 평균 {averageSpending.toLocaleString()} 원

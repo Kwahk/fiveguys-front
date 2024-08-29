@@ -34,30 +34,16 @@ const PWSearch = () => {
       <div className="certify-container">
         <form className="certify-form" onSubmit={handleSearchPassword}>
           <h2 className="form-title">Find Your Password</h2>
-          
+
           {errorMessage && <div className="error-message">{errorMessage}</div>}
-          
+
           <div className="certify-item">
             <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter Your Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <input type="email" id="email" placeholder="Enter Your Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
           <div className="certify-item">
             <label htmlFor="username">USERNAME</label>
-            <input
-              type="text"
-              id="username"
-              placeholder="Enter Your Name"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)} 
-              required
-            />
+            <input type="text" id="username" placeholder="Enter Your Name" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
           <button type="submit" className="submit-button">
             TEMPORARY PASSWORD
