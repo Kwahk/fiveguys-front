@@ -205,8 +205,10 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
     );
   };
 
-  // Calculate the total amount of all events
-  const totalAmount = editedEvents.reduce((sum, event) => sum + event.amount, 0);
+  const totalAmount = editedEvents.reduce(
+    (sum, event) => sum + parseFloat(event.amount), // Convert amount to number
+    0
+  );
 
   return (
     <div className="modal-overlay" onClick={onClose}>
