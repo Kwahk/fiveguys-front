@@ -23,9 +23,9 @@ const colorThemes = {
 
 const categories = [
   { name: "식비", icon: CateFood, color: colorThemes.food.background, borderColor: colorThemes.food.border },
-  { name: "교통/차량", icon: CateTraffic, color: colorThemes.traffic.background, borderColor: colorThemes.traffic.border },
-  { name: "패션/미용", icon: CateFashion, color: colorThemes.fashion.background, borderColor: colorThemes.fashion.border },
-  { name: "문화생활", icon: CateCulture, color: colorThemes.culture.background, borderColor: colorThemes.culture.border },
+  { name: "교통", icon: CateTraffic, color: colorThemes.traffic.background, borderColor: colorThemes.traffic.border },
+  { name: "패션", icon: CateFashion, color: colorThemes.fashion.background, borderColor: colorThemes.fashion.border },
+  { name: "문화", icon: CateCulture, color: colorThemes.culture.background, borderColor: colorThemes.culture.border },
   { name: "교육", icon: CateEducation, color: colorThemes.education.background, borderColor: colorThemes.education.border },
   { name: "기타", icon: CateEtc, color: colorThemes.etc.background, borderColor: colorThemes.etc.border },
 ];
