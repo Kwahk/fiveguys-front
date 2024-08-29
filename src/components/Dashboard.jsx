@@ -10,7 +10,8 @@ import etc from 'src/assets/etc.png';
 const Dashboard = () => {
   const [data, setData] = useState([]);
   const [averageSpending, setAverageSpending] = useState(null); 
-  const [userSpending, setUserSpending] = useState(null); // 사용자의 지출 상태 추가
+  const [userSpending, setUserSpending] = useState(null); 
+  const [categoryComparison, setCategoryComparison] = useState({}); // 카테고리별 지출 비교 상태 추가
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
@@ -48,6 +49,12 @@ const Dashboard = () => {
         setUserSpending(data);
       })
       .catch(error => console.error('사용자 지출 데이터 로드 중 오류 발생:', error));
+
+    // 카테고리별 지출 비교 데이터 가져오기
+    fetch(`http://localhost:8080/api/innout/category-spending-comparison/${userId}`)
+      .then(response => response.json())
+      .then(data => setCategoryComparison(data))
+      .catch(error => console.error('카테고리별 지출 비교 데이터 로드 중 오류 발생:', error));
   }, []);
 
   const getBadgeColor = (category) => {
@@ -132,6 +139,25 @@ const Dashboard = () => {
             )}
           </div>
         )}
+
+        <h4>카테고리별 지출 비교</h4>
+        {Object.keys(categoryComparison).map((category, index) => {
+          const userSpending = categoryComparison[category].userSpending;
+          const averageSpending = categoryComparison[category].averageSpending;
+          const difference = userSpending - averageSpending;
+          const percentageDifference = (difference / averageSpending) * 100;
+
+          return (
+            <div key={index} className='category-comparison'>
+              <img src={getBadgeIcon(category)} alt={`${category} icon`} className='badge-icon' />
+              <p>
+                {category}: 사용자 {userSpending.toLocaleString()} 원, 동연령대 평균 {averageSpending.toLocaleString()} 원
+                <br />
+                차이: {difference > 0 ? '+' : ''}{difference.toLocaleString()} 원 ({percentageDifference.toFixed(2)}%)
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
