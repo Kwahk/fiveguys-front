@@ -33,8 +33,8 @@ const Login = () => {
       localStorage.setItem("jwtToken", token);
 
       alert("Thanks to join us!!");
-      navigate("/calendar"); // 로그인 성공 시 캘린더 페이지로 리디렉션
-      window.location.reload(); // 페이지를 새로고침하여 토큰 확인 로직 실행
+      navigate("/calendar");
+      window.location.reload();
     } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed. Please check your credentials.");
