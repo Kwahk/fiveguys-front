@@ -122,9 +122,9 @@ function CalendarCreate() {
             <select className="input-select" value={category} onChange={(e) => setCategory(e.target.value)}>
               <option value="">분류를 선택하세요</option>
               <option value="1">식비</option>
-              <option value="2">교통/차량</option>
-              <option value="3">패션/미용</option>
-              <option value="4">문화생활</option>
+              <option value="2">교통</option>
+              <option value="3">패션</option>
+              <option value="4">문화</option>
               <option value="5">교육</option>
               <option value="6">기타</option>
             </select>
