@@ -96,8 +96,8 @@ export default function Calendar() {
 
         return (
           <div className="calendar-amounts">
-            <div className="calendar-expense">{totalExpense}원</div>
             <div className="calendar-income">{totalIncome}원</div>
+            <div className="calendar-expense">{totalExpense}원</div>
           </div>
         );
       }

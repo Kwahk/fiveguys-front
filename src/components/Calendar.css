@@ -1,10 +1,10 @@
 /* 요일 헤더에서 일요일 텍스트 스타일 */
 .react-calendar__month-view__weekdays abbr[aria-label="Sunday"] {
-  color: red !important;
+  color: #E92C2C !important;
 }
 
 .react-calendar__month-view__weekdays abbr[aria-label="Saturday"] {
-  color: blue !important;
+  color: #0085FF !important;
 }
 
 /* 일요일 날짜 스타일 */
@@ -128,6 +128,7 @@
   align-items: flex-start;
   margin: 5px;
   background-color: #ffffff;
+  position: relative;
 }
 
 /* hover, focus, active 상태 스타일 */
@@ -162,4 +163,34 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+}
+
+.calendar-expense {
+  background: #FFECEC;
+  color: #E92C2C;
+  font-weight: lighter;
+  padding: 4px 8px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.calendar-income {
+  background: #E6F3FF;
+  color: #0085FF;
+  font-weight: lighter;
+  width: auto;
+  padding: 4px 8px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.calendar-amounts {
+  position: absolute; 
+  bottom: 8px; 
+  right: 8px; 
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-end;
+  gap: 8px;
 }
