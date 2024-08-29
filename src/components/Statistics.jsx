@@ -44,7 +44,7 @@ const categories = [
 ];
 const Statistics = () => {
   const [userId, setUserId] = useState("");
-  const [transactions, setTransactions] = useState([]);
+  const [, setTransactions] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");

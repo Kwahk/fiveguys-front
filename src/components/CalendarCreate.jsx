@@ -11,7 +11,7 @@ function CalendarCreate() {
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("");
   const [category, setCategory] = useState("");
-  const [file, setFile] = useState(null);
+  const [, setFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [userId, setUserId] = useState("");
 
