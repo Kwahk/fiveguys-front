@@ -84,7 +84,7 @@ function CalendarCreate() {
       } catch (error) {
         console.error("Error creating transaction:", error);
         alert("트랜잭션 생성에 실패했습니다: " + error.message);
-      }
+      } window.location.reload();
     } else {
       alert("모든 필드를 입력해주세요.");
     }
