@@ -9,19 +9,23 @@ import { jwtDecode } from "jwt-decode";
 export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(null); // 초기값을 null로 변경
   const [modalEvents, setModalEvents] = useState([]);
+  const [allEvents, setAllEvents] = useState([]); // 모든 이벤트를 저장
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
+        console.log("Decoded Token:", decodedToken); // 디코딩된 토큰을 출력
         setUserId(decodedToken.sub);
       } catch (error) {
         console.error("JWT decoding failed:", error);
         return;
       }
+    } else {
+      console.error("No token found in localStorage.");
     }
   }, []);
 
@@ -31,20 +35,20 @@ export default function Calendar() {
       return;
     }
 
-    const formattedDate = moment(date).format("YYYY-MM-DD");
     try {
       const response = await fetch(`http://localhost:8080/api/innout/transaction/${userId}`, {
         method: "GET",
         headers: {
-          Authorization: `${localStorage.getItem("jwtToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
           "Content-Type": "application/json",
         },
       });
 
       if (response.ok) {
         const transactions = await response.json();
-        console.log("Transactions are: \n", transactions);
-
+        console.log("Fetched transactions:", transactions); // 데이터를 콘솔에 출력
+        setAllEvents(transactions); // 모든 이벤트를 저장
+        const formattedDate = moment(date).format("YYYY-MM-DD");
         const filteredTransactions = transactions.filter((transaction) => transaction.date === formattedDate);
         setModalEvents(filteredTransactions);
       } else {
@@ -55,6 +59,12 @@ export default function Calendar() {
     }
   };
 
+  useEffect(() => {
+    if (userId) {
+      fetchTransactions(selectedDate); // User ID가 설정된 후에 데이터 가져오기
+    }
+  }, [userId, selectedDate]);
+
   const handleDateClick = (date) => {
     setSelectedDate(date);
     fetchTransactions(date);
@@ -63,7 +73,36 @@ export default function Calendar() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    fetchTransactions(selectedDate);
+  };
+
+  const renderTileContent = ({ date, view }) => {
+    if (view === "month") {
+      const formattedDate = moment(date).format("YYYY-MM-DD");
+      const dayEvents = allEvents.filter((event) => event.date === formattedDate);
+
+      console.log("Day Events for", formattedDate, ":", dayEvents); // 필터링된 이벤트를 콘솔에 출력
+
+      if (dayEvents.length > 0) {
+        // 지출과 수입을 따로 필터링하여 합산
+        const totalExpense = dayEvents
+          .filter((event) => event.amount < 0) // 음수인 경우 지출로 간주
+          .reduce((sum, event) => sum + event.amount, 0);
+
+        const totalIncome = dayEvents
+          .filter((event) => event.amount > 0) // 양수인 경우 수입으로 간주
+          .reduce((sum, event) => sum + event.amount, 0);
+
+        console.log("Total Expense:", totalExpense, "Total Income:", totalIncome); // 계산된 금액을 콘솔에 출력
+
+        return (
+          <div className="calendar-amounts">
+            <div className="calendar-expense">{totalExpense}원</div>
+            <div className="calendar-income">{totalIncome}원</div>
+          </div>
+        );
+      }
+    }
+    return null;
   };
 
   const tileClassName = ({ date }) => {
@@ -88,6 +127,7 @@ export default function Calendar() {
         tileClassName={tileClassName}
         showNeighboringMonth={false}
         onClickDay={handleDateClick}
+        tileContent={renderTileContent} // 각 날짜 셀에 지출 및 수입 금액 표시
       />
 
       <CalendarModal isOpen={isModalOpen} onClose={handleCloseModal} selectedDate={moment(selectedDate).format("YYYY-MM-DD")} events={modalEvents} />
