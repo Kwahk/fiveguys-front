@@ -113,19 +113,39 @@ input.event-amount {
 .edit-button,
 .save-button,
 .delete-button {
-  background-color: #f27f3e;
+  background-color: #fff;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 5px 10px;
-  margin-left: 10px; /* 좌측 마진 추가 */
+  padding: 5px 0px;
+  margin-left: 0px; /* 좌측 마진 추가 */
   cursor: pointer;
   font-size: 14px;
+  width: 40px;
+  height: 40px;
 }
 
-.edit-button:hover,
-.save-button:hover {
-  background-color: #e0662f;
+.micon {
+  width: 30px;
+  height: 30px;
+}
+
+.save-button:hover{
+  background-color: #d5ffdb;
+  width: 40px;
+  height: 40px;
+}
+
+.edit-button:hover{
+  background-color: #f3f3f3;
+  width: 40px;
+  height: 40px;
+}
+
+.delete-button:hover {
+  background-color: #ffdada;
+  width: 40px;
+  height: 40px;
 }
 
 /* 스크롤 기능 */
