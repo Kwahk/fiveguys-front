@@ -41,7 +41,12 @@ const Dashboard = () => {
       try {
         const response = await fetch("http://localhost:8080/api/innout/consume");
         const result = await response.json();
-        setData(result);
+        // 데이터에서 amount를 절대값으로 전환
+        const transformedData = result.map((item) => ({
+          ...item,
+          amount: Math.abs(item.amount),
+        }));
+        setData(transformedData);
       } catch (error) {
         console.error("오류 발생:", error);
       }
@@ -58,7 +63,11 @@ const Dashboard = () => {
         const response = await fetch(`http://localhost:8080/api/innout/average-spending/${userId}`);
         if (!response.ok) throw new Error("Network response was not ok");
         const result = await response.json();
-        setAverageSpending(result);
+        // 평균 지출을 절대값으로 전환
+        setAverageSpending({
+          ...result,
+          averageSpending: Math.abs(result.averageSpending),
+        });
       } catch (error) {
         console.error("평균 지출 데이터 로드 중 오류 발생:", error);
       }
@@ -75,7 +84,11 @@ const Dashboard = () => {
         const response = await fetch(`http://localhost:8080/api/innout/user-spending/${userId}`);
         if (!response.ok) throw new Error("Network response was not ok");
         const result = await response.json();
-        setUserSpending(result);
+        // 사용자 지출을 절대값으로 전환
+        setUserSpending({
+          ...result,
+          totalSpending: Math.abs(result.totalSpending),
+        });
       } catch (error) {
         console.error("사용자 지출 데이터 로드 중 오류 발생:", error);
       }
@@ -91,7 +104,15 @@ const Dashboard = () => {
       try {
         const response = await fetch(`http://localhost:8080/api/innout/category-spending-comparison/${userId}`);
         const result = await response.json();
-        setCategoryComparison(result);
+        // 카테고리별 지출 비교를 절대값으로 전환
+        const transformedComparison = Object.keys(result).reduce((acc, category) => {
+          acc[category] = {
+            userSpending: Math.abs(result[category].userSpending),
+            averageSpending: Math.abs(result[category].averageSpending),
+          };
+          return acc;
+        }, {});
+        setCategoryComparison(transformedComparison);
       } catch (error) {
         console.error("카테고리별 지출 비교 데이터 로드 중 오류 발생:", error);
       }
@@ -198,8 +219,14 @@ const Dashboard = () => {
         )}
         {userSpending && (
           <div className="user-spending">
-            <p>사용자의 총 지출 : <span className="board-font-bold">{userSpending.totalSpending.toLocaleString()}</span> 원</p>
-            {spendingDifference !== null && <p>동연령대 평균 지출과의 차이 : <span className="board-font-bold">{spendingDifference.toLocaleString()}</span> 원</p>}
+            <p>
+              사용자의 총 지출 : <span className="board-font-bold">{userSpending.totalSpending.toLocaleString()}</span> 원
+            </p>
+            {spendingDifference !== null && (
+              <p>
+                동연령대 평균 지출과의 차이 : <span className="board-font-bold">{spendingDifference.toLocaleString()}</span> 원
+              </p>
+            )}
           </div>
         )}
 
@@ -215,7 +242,8 @@ const Dashboard = () => {
               <div key={index} className="category-comparison-item">
                 <img src={getBadgeIcon(category)} alt={`${category} icon`} className="badge-icon" />
                 <p>
-                  {category} : 사용자 <span className="board-font-bold">{userSpending.toLocaleString()}</span> 원, 동연령대 평균 <span className="board-font-bold">{averageSpending.toLocaleString()}</span> 원
+                  {category} : 사용자 <span className="board-font-bold">{userSpending.toLocaleString()}</span> 원, 동연령대 평균
+                  <span className="board-font-bold">{averageSpending.toLocaleString()}</span> 원
                   <br />
                   차이: {difference > 0 ? "+" : ""}
                   <span className="board-font-bold">{difference.toLocaleString()}</span> 원 ({percentageDifference.toFixed(2)}%)

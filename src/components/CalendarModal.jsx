@@ -11,7 +11,7 @@ import { jwtDecode } from "jwt-decode";
 
 // 숫자를 천 단위로 포맷하는 함수
 const formatNumber = (number) => {
-  return new Intl.NumberFormat('en-US').format(number);
+  return new Intl.NumberFormat("en-US").format(number);
 };
 
 const getCategoryIcon = (categoryId) => {
@@ -223,13 +223,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
             </div>
           )}
         </div>
-        <div className="modal-content">
-          {editedEvents.length === 0 ? (
-            <p>No events registered.</p> 
-          ) : (
-            editedEvents.map((event, index) => renderEventItem(event, index))
-          )}
-        </div>
+        <div className="modal-content">{editedEvents.length === 0 ? <p>No events registered.</p> : editedEvents.map((event, index) => renderEventItem(event, index))}</div>
       </div>
     </div>
   );
