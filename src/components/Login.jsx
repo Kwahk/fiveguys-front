@@ -20,27 +20,31 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (rememberEmail) {
-      Cookies.set("savedEmail", email, { expires: 7 });
+        Cookies.set("savedEmail", email, { expires: 7 });
     } else {
-      Cookies.remove("savedEmail");
+        Cookies.remove("savedEmail");
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/api/innout/login", { email, password });
-      const responseData = response.data;
+        const response = await axios.post("http://localhost:8080/api/innout/login", { email, password });
 
-      // JWT 토큰을 로컬 스토리지에 저장
-      const token = response.data; // 서버에서 토큰을 직접 응답받는다고 가정
-      localStorage.setItem("jwtToken", token);
+        // JWT 토큰을 로컬 스토리지에 저장
+        const token = response.data; // 서버에서 토큰을 직접 응답받는다고 가정
+        localStorage.setItem("jwtToken", token);
 
-      alert("Thanks to join us!!");
-      navigate("/calendar"); // 로그인 성공 시 캘린더 페이지로 리디렉션
-      window.location.reload(); // 페이지를 새로고침하여 토큰 확인 로직 실행
+        // 추가된 코드: 사용자 ID를 로컬 스토리지에 저장
+        const userId = response.data.userId;  // 서버에서 userId도 반환하도록 수정이 필요할 수 있음
+        localStorage.setItem("userId", userId);
+
+        alert("Thanks to join us!!");
+        navigate("/calendar");
+        window.location.reload();
     } catch (error) {
-      console.error("Login failed:", error);
-      alert("Login failed. Please check your credentials.");
+        console.error("Login failed:", error);
+        alert("Login failed. Please check your credentials.");
     }
-  };
+};
+
 
   return (
     <div className="page-container">
