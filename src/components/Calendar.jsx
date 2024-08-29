@@ -23,7 +23,6 @@ export default function Calendar() {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        console.log("Decoded Token:", decodedToken); // 디코딩된 토큰을 출력
         setUserId(decodedToken.sub);
       } catch (error) {
         console.error("JWT decoding failed:", error);
@@ -51,7 +50,6 @@ export default function Calendar() {
 
       if (response.ok) {
         const transactions = await response.json();
-        console.log("Fetched transactions:", transactions); // 데이터를 콘솔에 출력
         setAllEvents(transactions); // 모든 이벤트를 저장
         const formattedDate = moment(date).format("YYYY-MM-DD");
         const filteredTransactions = transactions.filter((transaction) => transaction.date === formattedDate);
@@ -85,8 +83,6 @@ export default function Calendar() {
       const formattedDate = moment(date).format("YYYY-MM-DD");
       const dayEvents = allEvents.filter((event) => event.date === formattedDate);
 
-      console.log("Day Events for", formattedDate, ":", dayEvents); // 필터링된 이벤트를 콘솔에 출력
-
       if (dayEvents.length > 0) {
         // 지출과 수입을 따로 필터링하여 합산
         const totalExpense = dayEvents
@@ -96,8 +92,6 @@ export default function Calendar() {
         const totalIncome = dayEvents
           .filter((event) => event.amount > 0) // 양수인 경우 수입으로 간주
           .reduce((sum, event) => sum + event.amount, 0);
-
-        console.log("Total Expense:", totalExpense, "Total Income:", totalIncome); // 계산된 금액을 콘솔에 출력
 
         return (
           <div className="calendar-amounts">
