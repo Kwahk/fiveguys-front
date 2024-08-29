@@ -6,6 +6,11 @@ import "./Calendar.css";
 import CalendarModal from "./CalendarModal";
 import { jwtDecode } from "jwt-decode";
 
+// 숫자를 천 단위로 포맷하는 함수
+const formatNumber = (number) => {
+  return new Intl.NumberFormat('en-US').format(number);
+};
+
 export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,8 +101,8 @@ export default function Calendar() {
 
         return (
           <div className="calendar-amounts">
-            <div className="calendar-income">{totalIncome}원</div>
-            <div className="calendar-expense">{totalExpense}원</div>
+            <div className="calendar-income">{formatNumber(totalIncome)}원</div>
+            <div className="calendar-expense">{formatNumber(totalExpense)}원</div>
           </div>
         );
       }

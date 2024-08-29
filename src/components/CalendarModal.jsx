@@ -9,6 +9,11 @@ import CateEducation from "../assets/Cate_Education.png";
 import CateEtc from "../assets/Cate_Etc.png";
 import { jwtDecode } from "jwt-decode";
 
+// 숫자를 천 단위로 포맷하는 함수
+const formatNumber = (number) => {
+  return new Intl.NumberFormat('en-US').format(number);
+};
+
 const getCategoryIcon = (categoryId) => {
   const icons = {
     1: CateFood,
@@ -195,7 +200,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
         ) : (
           <>
             <div className="event-description">{event.description}</div>
-            <div className="event-amount">{`${event.amount}원`}</div>
+            <div className="event-amount">{formatNumber(event.amount)}</div>
             <button className="edit-button" onClick={() => handleEditClick(index)}>
               수정하기
             </button>
@@ -214,7 +219,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
           <div className="date-display">{formattedDate}</div>
           {editingIndex === null && (
             <div className="total-amount" style={{ textAlign: "right", flexGrow: 1 }}>
-              Total: {totalAmount}원
+              Total: {formatNumber(totalAmount)}원
             </div>
           )}
         </div>
