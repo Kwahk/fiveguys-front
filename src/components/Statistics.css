@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  width: 90px;
+  width: 100px;
   padding: 5px;
   border-radius: 10px;
 }
@@ -56,18 +56,19 @@
   height: 30px; /* 원하는 크기로 설정 */
   display: inline-block;
   vertical-align: middle;
-  margin-right: 2px; /* 텍스트와의 간격 */
+  margin-left: 4px;
 }
 .category-percentage {
   font-size: 18px;
   font-weight: bold;
-  margin: 0;
+  margin-left: auto;
+  margin-right: 5px;
 }
 
 .category-label {
   font-size: 16px;
   color: #757575;
-  margin: 0;
+  margin-right: auto;
 }
 
 .category-change {
@@ -76,12 +77,12 @@
   color: #757575;
 }
 .category-amount {
-  width: 80px;
   text-align: right;
   font-size: 16px;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: right;
   margin-right: 5px;
+  max-height: 24px;
 }
 
 @media (max-width: 800px) {

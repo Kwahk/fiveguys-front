@@ -21,30 +21,20 @@ const colorThemes = {
   etc: { background: "#FFF6C8", border: "#FAC400" },
 };
 
-export const data = {
-  labels: ["식비", "교통/차량", "패션/미용", "문화생활", "교육", "기타"],
-  datasets: [
-    {
-      label: "Percentage of Expenses",
-      data: [30, 26, 18, 16, 7, 2],
-      backgroundColor: Object.values(colorThemes).map((color) => color.background),
-      borderColor: Object.values(colorThemes).map((color) => color.border),
-      borderWidth: 1,
-    },
-  ],
-};
-
 const categories = [
-  { label: "식비", percentage: "30%", amount: "184,300원", icon: CateFood, change: "+11,290원", color: colorThemes.food.background, borderColor: colorThemes.food.border },
-  { label: "교통/차량", percentage: "26%", amount: "158,000원", icon: CateTraffic, change: "+9,300원", color: colorThemes.traffic.background, borderColor: colorThemes.traffic.border },
-  { label: "패션/미용", percentage: "18%", amount: "112,400원", icon: CateFashion, change: "-36,000원", color: colorThemes.fashion.background, borderColor: colorThemes.fashion.border },
-  { label: "문화생활", percentage: "16%", amount: "107,500원", icon: CateCulture, change: "+10,600원", color: colorThemes.culture.background, borderColor: colorThemes.culture.border },
-  { label: "교육", percentage: "7%", amount: "45,000원", icon: CateEducation, change: "-11,200원", color: colorThemes.education.background, borderColor: colorThemes.education.border },
-  { label: "기타", percentage: "2%", amount: "11,400원", icon: CateEtc, change: "-51,500원", color: colorThemes.etc.background, borderColor: colorThemes.etc.border },
+  { name: "식비", icon: CateFood, color: colorThemes.food.background, borderColor: colorThemes.food.border },
+  { name: "교통/차량", icon: CateTraffic, color: colorThemes.traffic.background, borderColor: colorThemes.traffic.border },
+  { name: "패션/미용", icon: CateFashion, color: colorThemes.fashion.background, borderColor: colorThemes.fashion.border },
+  { name: "문화생활", icon: CateCulture, color: colorThemes.culture.background, borderColor: colorThemes.culture.border },
+  { name: "교육", icon: CateEducation, color: colorThemes.education.background, borderColor: colorThemes.education.border },
+  { name: "기타", icon: CateEtc, color: colorThemes.etc.background, borderColor: colorThemes.etc.border },
 ];
+
 const Statistics = () => {
   const [userId, setUserId] = useState("");
   const [transactions, setTransactions] = useState([]);
+  const [categoryAmounts, setCategoryAmounts] = useState(Array(categories.length).fill(0));
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
@@ -72,7 +62,21 @@ const Statistics = () => {
         if (response.ok) {
           const transactions = await response.json();
           setTransactions(transactions);
-          console.log("거래 내역은: \n", transactions);
+
+          // Category별 amount 계산
+          const categoryAmounts = Array(categories.length).fill(0);
+          let totalAmount = 0;
+
+          transactions.forEach((transaction) => {
+            const categoryIndex = categories.findIndex((category) => category.name === transaction.category.name);
+            if (categoryIndex !== -1) {
+              categoryAmounts[categoryIndex] += Math.abs(transaction.amount); // 절댓값으로 변환
+            }
+            totalAmount += Math.abs(transaction.amount); // 절댓값으로 변환
+          });
+
+          setCategoryAmounts(categoryAmounts);
+          setTotalAmount(totalAmount);
         } else {
           console.log("거래내역을 불러오지 못했습니다.");
         }
@@ -85,7 +89,18 @@ const Statistics = () => {
     <div className="statistics-container">
       <div className="chart-container">
         <Pie
-          data={data}
+          data={{
+            labels: categories.map((category) => category.name),
+            datasets: [
+              {
+                label: "Percentage of Expenses",
+                data: categoryAmounts,
+                backgroundColor: categories.map((category) => category.color),
+                borderColor: categories.map((category) => category.borderColor),
+                borderWidth: 1,
+              },
+            ],
+          }}
           options={{
             maintainAspectRatio: false,
             responsive: true,
@@ -96,14 +111,13 @@ const Statistics = () => {
         {categories.map((category, index) => (
           <div className="category-card" key={index}>
             <div className="category-block" style={{ backgroundColor: category.color }}>
-              <img src={category.icon} alt={category.label} className="category-icon" />
+              <img src={category.icon} alt={category.name} className="category-icon" />
               <span className="category-percentage" style={{ color: category.borderColor }}>
-                {category.percentage}
+                {`${((categoryAmounts[index] / totalAmount) * 100).toFixed(0)}%`}
               </span>
             </div>
-            <span className="category-label">{category.label}</span>
-            <span className="category-change">{category.change}</span>
-            <span className="category-amount">{category.amount}</span>
+            <span className="category-label">{category.name}</span>
+            <span className="category-amount">{`${categoryAmounts[index].toLocaleString()}원`}</span> {/* 절댓값으로 출력 */}
           </div>
         ))}
       </div>
