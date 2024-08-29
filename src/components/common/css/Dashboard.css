@@ -4,6 +4,7 @@
   padding: 20px;
   justify-content: center; /* 컨테이너 내 요소들을 가운데 정렬 */
   display: flex;
+  margin-top: 50px;
 }
 
 /* 모든 사각형 스타일 */
@@ -13,7 +14,7 @@
   border-radius: 12px;
   width: 100%;
   max-width: 600px; /* 최대 너비 */
-  height: 76vh;
+  height: 76vh; /**/
   justify-content: center;
   overflow: hidden; /* 내부 요소가 경계를 넘지 않도록 숨김 */
 }
@@ -28,12 +29,20 @@
   padding: 6%;
 }
 
+.frame:hover {
+  background-color: rgba(242, 127, 62, 0.7);
+}
+
+.frame:focus {
+  background-color: rgba(242, 127, 62, 0.7);
+}
+
 .frame {
   width: 160px;
   height: 50px;
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,6 +56,7 @@
   text-align: center !important;
   font-weight: 700;
   margin: 0;
+  color: #333;
 }
 
 .repoicon {
@@ -66,13 +76,15 @@
 
 .board-card {
   background-color: white;
-  border-radius: 12px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   width: 90%;
   height: auto;
   padding: 20px;
   display: flex;
   margin: auto;
+  margin-left: 36px;
+  margin-right: 36px;
   margin-bottom: 10px; /* 카드들 사이의 간격 추가 */
 }
 
@@ -94,7 +106,9 @@
   border-radius: 8px;
   text-align: center;
   width: 48%;
+  justify-content: space-between;  
 }
+
 .badge-icon {
   width: 24px; /* 아이콘 크기 조정 */
   height: 24px; /* 아이콘 크기 조정 */
@@ -102,13 +116,15 @@
 }
 
 .group {
-  color: black;
-  font-size: 16px;
+  color: #333;
+  font-size: 15px;
+  margin-right: auto; 
 }
 .amount {
   color: #676464;
   margin-left: 8px;
   font-size: 13px;
+  margin-left: auto; 
 }
 
 .pagination {
@@ -122,7 +138,7 @@
 .pagination button {
   margin: 0 5px;
   padding: 8px 16px;
-  background-color: #f24150;
+  background-color: #ccc;
   color: white;
   border: none;
   border-radius: 4px;
@@ -130,7 +146,7 @@
 }
 
 .pagination button:disabled {
-  background-color: #ccc;
+  background-color: #F27F3E;
   cursor: not-allowed;
 }
 
@@ -140,29 +156,43 @@
   border-radius: 12px;
   width: 100%;
   max-width: 600px;
-  height: auto;
-  padding: 20px;
+  padding: 22px 36px 36px 36px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* 요소 간의 간격 추가 */
 }
 
 .spending-comparison-title,
 .category-comparison-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
-  text-align: left; /* 제목을 중앙 정렬 */
+  margin-top: 26px;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #333;
+}
+
+.average-spending p,
+.user-spending p {
+  margin-bottom: 0px;
+  font-size: 14px;
 }
 
 .average-spending,
 .user-spending {
   background-color: #fff;
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px; /* 요소 사이의 간격 추가 */
+  margin-bottom: 14px;
+}
+
+.board-font-bold {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  padding-left: 6px;
 }
 
 .no-data {
@@ -176,14 +206,20 @@
   align-items: center;
   background-color: #fff;
   border-radius: 8px;
-  padding: 10px;
+  padding: 14px 16px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px; /* 카테고리별 비교 요소 간의 간격 */
-  gap: 10px; /* 아이콘과 텍스트 사이의 간격 */
+  margin-bottom: 14px;
+  gap: 10px;
 }
 
 .category-comparison-item p {
   margin: 0;
   font-size: 14px;
   text-align: left; /* 텍스트를 왼쪽 정렬 */
+}
+
+.category-comparison-item-group {
+  overflow-y: auto; /* 세로 스크롤이 가능하도록 설정 */
+  overflow-x: hidden; /* 가로 스크롤은 숨김 */
+  max-height: 76vh; /* 최대 높이를 지정하여 스크롤이 작동하게 함 */ 
 }
