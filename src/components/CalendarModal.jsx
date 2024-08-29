@@ -213,9 +213,11 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div className="date-display">{formattedDate}</div>
-          <div className="total-amount" style={{ textAlign: "right", flexGrow: 1 }}>
-            Total: {totalAmount}원
-          </div>
+          {editingIndex === null && (
+            <div className="total-amount" style={{ textAlign: "right", flexGrow: 1 }}>
+              Total: {totalAmount}원
+            </div>
+          )}
         </div>
         {editedEvents.length === 0 ? <p>No events registered.</p> : editedEvents.map((event, index) => renderEventItem(event, index))}
       </div>
