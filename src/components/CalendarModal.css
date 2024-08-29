@@ -29,8 +29,14 @@
 }
 .total-amount {
   font-size: 16px;
-  color: #555;
+  color: #333;
 }
+.amount-font{
+  color: #f27f3e;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
 .modal-correction {
   background-color: white;
   font-size: 16px;
@@ -52,14 +58,14 @@
   align-items: center;
   margin-bottom: 10px;
   padding: 10px;
-  border: 2px solid transparent; /* 기본 테두리 스타일 */
+  border: 1px solid #dfdfdf;
   border-radius: 5px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .event-icon {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
 }
 
@@ -72,14 +78,18 @@
   border-radius: 5px;
   color: #555;
 }
+select.event-category{
+  height: 28px;
+}
 
 .event-description {
-  margin-left: 10px;
+  margin-left: 20px;
   color: #333;
   flex: 1;
+  font-size: 15px;
 }
 input.event-description {
-  margin-left: 5px;
+  margin-left: 20px;
   color: #333;
   flex: 1;
   width: 50px;
@@ -87,15 +97,17 @@ input.event-description {
 }
 
 .event-amount {
-  font-size: 12px;
+  font-size: 14px;
   color: #333;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 input.event-amount {
   font-size: 12px;
   color: #333;
   width: 100px;
+  height: 28px;
 }
 
 .edit-button,
@@ -120,5 +132,4 @@ input.event-amount {
 .modal-content {
   max-height: 500px;
   overflow-y: auto;
-  padding-right: 10px;
 }

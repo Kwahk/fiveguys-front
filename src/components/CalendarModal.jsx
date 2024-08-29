@@ -37,9 +37,9 @@ const colorThemes = {
 
 const categoryOptions = [
   { id: 1, name: "식비" },
-  { id: 2, name: "교통/차량" },
-  { id: 3, name: "패션/미용" },
-  { id: 4, name: "문화생활" },
+  { id: 2, name: "교통" },
+  { id: 3, name: "패션" },
+  { id: 4, name: "문화" },
   { id: 5, name: "교육" },
   { id: 6, name: "기타" },
 ];
@@ -219,7 +219,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
           <div className="date-display">{formattedDate}</div>
           {editingIndex === null && (
             <div className="total-amount" style={{ textAlign: "right", flexGrow: 1 }}>
-              Total: {formatNumber(totalAmount)}원
+              Total : <span className="amount-font">{formatNumber(totalAmount)}원</span>
             </div>
           )}
         </div>
