@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./common/css/Dashboard.css"; // Import the CSS file
+import "./Dashboard.css"; // Import the CSS file
 
 // 이미지 파일들을 import
 import food from "src/assets/Cate_Food.png";
@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [userSpending, setUserSpending] = useState(null);
   const [categoryComparison, setCategoryComparison] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 4;
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
