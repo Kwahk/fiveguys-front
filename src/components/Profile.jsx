@@ -3,6 +3,7 @@ import "./Profile.css";
 import Userprofile from "../assets/userprofile.png";
 import { jwtDecode } from "jwt-decode"; // 수정된 부분
 import axios from "axios";
+import {REST_API_BASE_URL} from "../services/Service"
 
 const Profile = () => {
   const [userId, setUserId] = useState(null);
@@ -29,7 +30,7 @@ const Profile = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`http://localhost:8080/api/innout/${userId}/profile`)
+        .get(`${REST_API_BASE_URL}/innout/${userId}/profile`)
         .then((response) => {
           setUserData(response.data); // 서버에서 받은 데이터를 상태로 설정
         })

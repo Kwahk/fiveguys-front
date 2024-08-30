@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; // axios를 사용하여 백엔드와 통신
+import {REST_API_BASE_URL} from "../services/Service"
 
 const PWSearch = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ const PWSearch = () => {
 
     try {
       // 백엔드에 이메일과 유저네임을 확인하는 요청을 보냄
-      const response = await axios.post("http://localhost:8080/api/innout/password-reset", {
+      const response = await axios.post(`${REST_API_BASE_URL}/innout/password-reset`, {
         email: email,
         username: username,
       });

@@ -9,6 +9,7 @@ import CateFashion from "../assets/Cate_Fashion.png";
 import CateCulture from "../assets/Cate_Culture.png";
 import CateEducation from "../assets/Cate_Education.png";
 import CateEtc from "../assets/Cate_Etc.png";
+import {REST_API_BASE_URL} from "../services/Service"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -51,7 +52,7 @@ const Statistics = () => {
   useEffect(() => {
     if (userId) {
       const fetchData = async () => {
-        const response = await fetch(`http://localhost:8080/api/innout/transaction/${userId}`, {
+        const response = await fetch(`${REST_API_BASE_URL}/innout/transaction/${userId}`, {
           method: "GET",
           headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,

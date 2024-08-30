@@ -5,6 +5,7 @@ import "react-calendar/dist/Calendar.css";
 import "./Calendar.css";
 import CalendarModal from "./CalendarModal";
 import { jwtDecode } from "jwt-decode";
+import {REST_API_BASE_URL} from "../services/Service"
 
 // 숫자를 천 단위로 포맷하는 함수
 const formatNumber = (number) => {
@@ -40,7 +41,7 @@ export default function Calendar() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/api/innout/transaction/${userId}`, {
+      const response = await fetch(`${REST_API_BASE_URL}/innout/transaction/${userId}`, {
         method: "GET",
         headers: {
           Authorization: `${localStorage.getItem("jwtToken")}`,

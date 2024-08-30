@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import "./CalendarCreate.css";
 import { jwtDecode } from "jwt-decode"; // 라이브러리 임포트 수정
+import {REST_API_BASE_URL} from "../services/Service"
 
 function CalendarCreate() {
   // 기존 상태 변수 유지
@@ -59,7 +60,7 @@ function CalendarCreate() {
       console.log(JSON.stringify(payload));
 
       try {
-        const response = await fetch("http://localhost:8080/api/innout/add", {
+        const response = await fetch(`${REST_API_BASE_URL}/innout/add`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // JSON 형식 지정

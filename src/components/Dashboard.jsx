@@ -12,6 +12,7 @@ import board from "src/assets/Repo_Board.png";
 import rank from "src/assets/Repo_Rank.png";
 import achievements from "src/assets/Repo_Achievements.png";
 import { jwtDecode } from "jwt-decode";
+import {REST_API_BASE_URL} from "../services/Service"
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -39,7 +40,7 @@ const Dashboard = () => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/innout/consume");
+        const response = await fetch(`${REST_API_BASE_URL}/innout/consume`);
         const result = await response.json();
         // 데이터에서 amount를 절대값으로 전환
         const transformedData = result.map((item) => ({
@@ -60,7 +61,7 @@ const Dashboard = () => {
 
     const fetchAverageSpending = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/innout/average-spending/${userId}`);
+        const response = await fetch(`${REST_API_BASE_URL}/innout/average-spending/${userId}`);
         if (!response.ok) throw new Error("Network response was not ok");
         const result = await response.json();
         // 평균 지출을 절대값으로 전환
@@ -81,7 +82,7 @@ const Dashboard = () => {
 
     const fetchUserSpending = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/innout/user-spending/${userId}`);
+        const response = await fetch(`${REST_API_BASE_URL}/innout/user-spending/${userId}`);
         if (!response.ok) throw new Error("Network response was not ok");
         const result = await response.json();
         // 사용자 지출을 절대값으로 전환
@@ -102,7 +103,7 @@ const Dashboard = () => {
 
     const fetchCategoryComparison = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/innout/category-spending-comparison/${userId}`);
+        const response = await fetch(`${REST_API_BASE_URL}/innout/category-spending-comparison/${userId}`);
         const result = await response.json();
         // 카테고리별 지출 비교를 절대값으로 전환
         const transformedComparison = Object.keys(result).reduce((acc, category) => {
