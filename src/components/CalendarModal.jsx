@@ -11,6 +11,7 @@ import modal_edit from "../assets/modal_edit.png";
 import modal_trash from "../assets/modal_trash.png";
 import modal_check from "../assets/modal_check.png";
 import { jwtDecode } from "jwt-decode";
+import {REST_API_BASE_URL} from "../services/Service"
 
 // 숫자를 천 단위로 포맷하는 함수
 const formatNumber = (number) => {
@@ -106,7 +107,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
     };
 
     try {
-      const response = await fetch(`http://localhost:8080/api/innout/${eventToSave.id}`, {
+      const response = await fetch(`${REST_API_BASE_URL}/innout/${eventToSave.id}`, {
         method: "PATCH",
         headers: {
           Authorization: `${localStorage.getItem("jwtToken")}`,
@@ -130,7 +131,7 @@ const CalendarModal = ({ isOpen, onClose, selectedDate, events }) => {
     const eventToDelete = editedEvents[index];
 
     try {
-      const response = await fetch(`http://localhost:8080/api/innout/${eventToDelete.id}`, {
+      const response = await fetch(`${REST_API_BASE_URL}/innout/${eventToDelete.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `${localStorage.getItem("jwtToken")}`,

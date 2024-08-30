@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
 import axios from "axios";
+import { REST_API_BASE_URL } from '/src/services/Service.js';
 
 const Join = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const Join = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/api/innout/join", formData);
+      const response = await axios.post(`${REST_API_BASE_URL}/innout/join`, formData);
       console.log("Success:", response.data);
       alert("Thanks to join us!!");
       navigate("/login"); // 성공 시 로그인 페이지로 리디렉션

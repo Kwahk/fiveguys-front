@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import {REST_API_BASE_URL} from "../services/Service"
 
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -43,7 +44,7 @@ const ChangePassword = () => {
         newPassword,
       };
 
-      const response = await axios.put(`http://localhost:8080/api/innout/${userId}/change-password`, payload, {
+      const response = await axios.put(`${REST_API_BASE_URL}/innout/${userId}/change-password`, payload, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `${localStorage.getItem("jwtToken")}`,

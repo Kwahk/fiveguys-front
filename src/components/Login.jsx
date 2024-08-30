@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import {REST_API_BASE_URL} from "../services/Service"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/api/innout/login", { email, password });
+      const response = await axios.post(`${REST_API_BASE_URL}/innout/login`, { email, password });
 
       // JWT 토큰을 로컬 스토리지에 저장
       const token = response.data; // 서버에서 토큰을 직접 응답받는다고 가정
