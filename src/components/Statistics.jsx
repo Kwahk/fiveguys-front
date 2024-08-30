@@ -9,7 +9,7 @@ import CateFashion from "../assets/Cate_Fashion.png";
 import CateCulture from "../assets/Cate_Culture.png";
 import CateEducation from "../assets/Cate_Education.png";
 import CateEtc from "../assets/Cate_Etc.png";
-import {REST_API_BASE_URL} from "../services/Service"
+import { REST_API_BASE_URL } from "../services/Service";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -72,8 +72,8 @@ const Statistics = () => {
             const categoryIndex = categories.findIndex((category) => category.name === transaction.category.name);
             if (categoryIndex !== -1) {
               categoryAmounts[categoryIndex] += Math.abs(transaction.amount); // 절댓값으로 변환
+              totalAmount += Math.abs(transaction.amount); // 절댓값으로 변환
             }
-            totalAmount += Math.abs(transaction.amount); // 절댓값으로 변환
           });
 
           setCategoryAmounts(categoryAmounts);
