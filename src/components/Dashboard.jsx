@@ -12,7 +12,7 @@ import board from "src/assets/Repo_Board.png";
 import rank from "src/assets/Repo_Rank.png";
 import achievements from "src/assets/Repo_Achievements.png";
 import { jwtDecode } from "jwt-decode";
-import {REST_API_BASE_URL} from "../services/Service"
+import { REST_API_BASE_URL } from "../services/Service";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -130,7 +130,7 @@ const Dashboard = () => {
         return "#C8FFDF";
       case "패션":
         return "#BFDFFF";
-      case "문화생활":
+      case "문화":
         return "#CAC9FF";
       case "교육":
         return "#FFD3B2";
@@ -147,7 +147,7 @@ const Dashboard = () => {
         return traffic;
       case "패션":
         return fashion;
-      case "문화생활":
+      case "문화":
         return culture;
       case "교육":
         return education;
