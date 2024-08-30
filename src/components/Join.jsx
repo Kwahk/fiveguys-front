@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
 import axios from "axios";
-import { REST_API_BASE_URL } from '/src/services/Service.js';
+import { REST_API_BASE_URL } from "/src/services/Service.js";
 
 const Join = () => {
   const [formData, setFormData] = useState({
@@ -32,6 +32,10 @@ const Join = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.password != formData.passwordConfirm) {
+      alert("Password가 서로 다릅니다");
+    }
     try {
       const response = await axios.post(`${REST_API_BASE_URL}/innout/join`, formData);
       console.log("Success:", response.data);
