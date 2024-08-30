@@ -1,7 +1,6 @@
 .dashboard-container {
   flex-direction: row;
   gap: 20px; /* 사각형들 사이의 간격 */
-  padding: 20px;
   justify-content: center; /* 컨테이너 내 요소들을 가운데 정렬 */
   display: flex;
   margin-top: 50px;
@@ -106,7 +105,7 @@
   border-radius: 8px;
   text-align: center;
   width: 48%;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
 
 .badge-icon {
@@ -118,13 +117,13 @@
 .group {
   color: #333;
   font-size: 15px;
-  margin-right: auto; 
+  margin-right: auto;
 }
 .amount {
   color: #676464;
   margin-left: 8px;
   font-size: 13px;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .pagination {
@@ -146,7 +145,7 @@
 }
 
 .pagination button:disabled {
-  background-color: #F27F3E;
+  background-color: #f27f3e;
   cursor: not-allowed;
 }
 
@@ -221,5 +220,5 @@
 .category-comparison-item-group {
   overflow-y: auto; /* 세로 스크롤이 가능하도록 설정 */
   overflow-x: hidden; /* 가로 스크롤은 숨김 */
-  max-height: 76vh; /* 최대 높이를 지정하여 스크롤이 작동하게 함 */ 
+  max-height: 76vh; /* 최대 높이를 지정하여 스크롤이 작동하게 함 */
 }
